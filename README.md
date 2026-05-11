@@ -1,6 +1,25 @@
 # partners 生态伙伴主题
 
-基于 `guide` 目录结构扩展：Bento 首页、`channel` 目录筛选、`page` 伙伴详情（含 `layout` 内 JSON-LD）、`statics/become-a-partner` 多步表单。动态字段统一走 `page.settings.*`，站点级线索邮箱见 `settings_schema` 的 `partner_lead_email`。
+基于 `guide` 目录结构扩展：Bento 首页、`channel` 目录筛选、`page` 伙伴详情（含 `layout/theme.liquid` 的 `<head>` 内 JSON-LD）、`statics/become-a-partner` 多步表单。动态字段统一走 `page.settings.*`，站点级线索邮箱见 `config/settings_schema.json` 的 `partner_lead_email`。
+
+## 推荐站点结构
+
+| 页面 | `template_name` / 说明 |
+|------|-------------------------|
+| 根首页 `/` | `index`（默认 `template_style` 为空即 Bento 门户） |
+| 伙伴目录 `/partner-hub`（slug 可自定，首页里用 `site.pages['/partner-hub']`） | `channel`，子级为多个 `page`（每个伙伴一条） |
+| 伙伴详情 | `page`，字段见模板内 `{% schema %}` |
+| 入驻申请 | 静态页 `statics/become-a-partner.liquid`，URL 一般为 `/become-a-partner` |
+
+示例数据见 `seeds/001_site.yml`、`seeds/002_pages.yml`。
+
+## 首页 `template_style` 矩阵
+
+| `template_style` | 模板文件 | 说明 |
+|------------------|----------|------|
+| （默认 / 空） | `templates/index.liquid` | Bento + 双区块 + CTA，推荐 |
+| `list` | `templates/index.list.liquid` | 搜索 + 标签 + 列表行（玻璃卡片，适配深色壳） |
+| `timeline` | `templates/index.timeline.liquid` | 时间线视图（已去掉覆盖全局背景/页脚的 style，适配深色壳） |
 
 ## 开发
 
@@ -91,8 +110,11 @@ module.exports = {
 ```
 
 
-## 编译&发布
+## 编译与发布
 
 ```bash
-bun run build
+yarn install
+yarn build
 ```
+
+将 `assets/stylesheets/application.css` 与 `assets/javascripts/application.js` 一并提交或上传至主题包。发布前确认各语言 `locales/*.schema.json` 与 `locales/*.json` 已同步（含 `partners.*` 与 `partner_lead_email` 文案）。

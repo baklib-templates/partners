@@ -1,5 +1,9 @@
+{% assign site_pt_src = site.settings.partner_type.value | default: site.settings.partner_type | default: '' %}
+{% assign site_pt_lines = site_pt_src | strip | newline_to_br | split: '<br />' %}
+{% assign type_integration_key = site_pt_lines[0] | strip %}
+{% assign type_agency_key = site_pt_lines[1] | strip %}
 {% assign ptype_raw = page.settings.partner_type %}
-{% assign ptype = ptype_raw.value | default: ptype_raw | default: 'agency' %}
+{% assign ptype = ptype_raw.value | default: ptype_raw | default: type_agency_key | default: type_integration_key | default: '' %}
 {% assign display_title = page.settings.title | default: page.link_text %}
 {% assign tagline = page.settings.tagline | strip %}
 {% assign logo_u = page.settings.logo_image_url | presence %}
@@ -17,39 +21,35 @@
     <div class="flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
       <div class="flex w-full flex-col gap-6 sm:flex-row sm:items-center">
         {% if logo_u %}
-          <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-inner ring-1 ring-black/5 dark:bg-slate-800 sm:h-28 sm:w-28">
+          <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-inner ring-1 ring-slate-200 sm:h-28 sm:w-28">
             <img src="{{ logo_u }}" alt="{{ display_title | escape }}" class="max-h-full max-w-full object-contain" width="112" height="112" />
           </div>
         {% endif %}
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap gap-2">
-            {% if ptype == 'integration' %}
-              <span class="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-semibold text-primary">{{ 'partners.type_integration' | t }}</span>
-            {% else %}
-              <span class="rounded-full bg-secondary/20 px-2.5 py-0.5 text-xs font-semibold text-sky-200">{{ 'partners.type_agency' | t }}</span>
+            {% if ptype != blank %}
+              <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">{{ ptype | escape }}</span>
             {% endif %}
             {% assign tier_raw = page.settings.partner_tier %}
             {% assign tier_v = tier_raw.value | default: tier_raw %}
-            {% if tier_v == 'gold' %}
-              <span class="rounded-full bg-amber-400/25 px-2.5 py-0.5 text-xs font-semibold text-amber-100">{{ 'partners.tier_gold' | t }}</span>
-            {% elsif tier_v == 'silver' %}
-              <span class="rounded-full bg-slate-400/25 px-2.5 py-0.5 text-xs font-semibold text-slate-200">{{ 'partners.tier_silver' | t }}</span>
+            {% if tier_v != blank %}
+              <span class="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-700">{{ tier_v | escape }}</span>
             {% endif %}
           </div>
-          <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">{{ display_title }}</h1>
+          <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ display_title }}</h1>
           {% if tagline != blank %}
-            <p class="mt-2 max-w-2xl text-base text-slate-600 dark:text-slate-300 sm:text-lg">{{ tagline }}</p>
+            <p class="mt-2 max-w-2xl text-base text-slate-600 sm:text-lg">{{ tagline }}</p>
           {% endif %}
         </div>
       </div>
       <div class="flex w-full shrink-0 flex-col gap-2 sm:flex-row lg:w-auto lg:flex-col">
         {% if act != blank %}
           <a href="{{ act }}" class="btn btn-primary btn-lg w-full sm:w-auto" {% if act contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>
-            {% if al != blank %}{{ al }}{% elsif ptype == 'integration' %}{{ 'partners.install_app' | t }}{% else %}{{ 'partners.contact_partner' | t }}{% endif %}
+            {% if al != blank %}{{ al }}{% elsif ptype == type_integration_key %}{{ 'partners.install_app' | t }}{% else %}{{ 'partners.contact_partner' | t }}{% endif %}
           </a>
         {% endif %}
         {% if web != blank %}
-          <a href="{{ web }}" class="btn btn-outline btn-lg w-full border-white/25 text-slate-800 dark:text-white sm:w-auto" target="_blank" rel="noopener noreferrer">{{ 'partners.visit_website' | t }}</a>
+          <a href="{{ web }}" class="btn btn-outline btn-lg w-full border-slate-300 text-slate-800 sm:w-auto" target="_blank" rel="noopener noreferrer">{{ 'partners.visit_website' | t }}</a>
         {% endif %}
       </div>
     </div>
@@ -61,7 +61,7 @@
         {{ page.settings.body }}
       </div>
       {% if site.settings.is_allow_feedback %}
-        <div class="mt-10 border-t border-white/10 pt-8">
+        <div class="mt-10 border-t border-slate-200 pt-8">
           {% render 'feedback_button', page: page %}
         </div>
       {% endif %}
@@ -112,7 +112,7 @@
             {% for it in ind_parts %}
               {% assign it = it | strip %}
               {% if it != blank %}
-                <li class="rounded-full bg-white/50 px-2.5 py-1 text-xs text-slate-800 ring-1 ring-black/5 dark:bg-slate-800/80 dark:text-slate-200 dark:ring-white/10">{{ it }}</li>
+                <li class="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-800 ring-1 ring-slate-200/80">{{ it }}</li>
               {% endif %}
             {% endfor %}
           </ul>
@@ -160,34 +160,24 @@
         "type": "select",
         "label": "t:schema.templates.page.settings.partner_type.label",
         "info": "t:schema.templates.page.settings.partner_type.info",
-        "choices": [
-          { "label": "技术 / 集成", "value": "integration" },
-          { "label": "渠道 / 服务商", "value": "agency" }
-        ],
-        "default": "agency"
+        "choices_from": "$site.partner_type",
+        "default": "渠道&服务商"
       },
       {
         "id": "region",
         "type": "select",
         "label": "t:schema.templates.page.settings.region.label",
         "info": "t:schema.templates.page.settings.region.info",
-        "choices": [
-          { "label": "北美", "value": "na" },
-          { "label": "北欧", "value": "nordic" },
-          { "label": "亚太", "value": "apac" }
-        ],
-        "default": "apac"
+        "choices_from": "$site.partner_region",
+        "default": "亚太"
       },
       {
         "id": "partner_tier",
         "type": "select",
         "label": "t:schema.templates.page.settings.partner_tier.label",
         "info": "t:schema.templates.page.settings.partner_tier.info",
-        "choices": [
-          { "label": "金牌", "value": "gold" },
-          { "label": "银牌", "value": "silver" }
-        ],
-        "default": "silver"
+        "choices_from": "$site.partner_tier",
+        "default": "银牌"
       },
       {
         "id": "website_url",

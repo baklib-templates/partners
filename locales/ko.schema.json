@@ -1,28 +1,90 @@
 {
-  "theme_label": "릴리스 가이드 템플릿",
-  "theme_description": "제품 업데이트, 공지사항, 뉴스, 블로그, 로그, FAQ 등을 구축하기 위한 소형 CMS 콘텐츠 관리 시스템.",
+  "theme_label": "partners",
+  "theme_description": "엔터프라이즈 생태계·연동 허브. 벤토 그리드와 글래스모피즘으로 통합·에이전시를 소개하고 리드 확보와 파트너 프로그램을 지원합니다.",
   "templates": {
-    "page": {
-      "name": "문서 페이지",
-      "description": "문서 페이지 템플릿",
+    "index": {
+      "name": "생태계 홈",
+      "description": "추천 통합·솔루션 파트너 벤토, 파트너 CTA",
       "settings": {
-        "title": {
-          "label": "제목",
-          "info": "콘텐츠 상단에 표시되는 문서 제목"
-        },
         "description": {
-          "label": "요약"
-        },
-        "tags": {
-          "label": "태그"
-        },
-        "thumb_image_url": {
-          "label": "커버 이미지"
-        },
-        "content": {
-          "label": "페이지 콘텐츠"
+          "label": "홈 소개",
+          "info": "히어로 글래스 카드에 표시할 리치 텍스트"
         }
       }
+    },
+    "channel": {
+      "name": "파트너 디렉터리",
+      "description": "유형·지역·등급으로 필터",
+      "settings": {
+        "intro": {
+          "label": "디렉터리 소개",
+          "info": "제목 아래 짧은 설명"
+        }
+      }
+    },
+    "page": {
+      "name": "파트너 / 연동 상세",
+      "description": "히어로, 2단 본문과 사이드바",
+      "settings": {
+        "title": {
+          "label": "파트너 / 앱 이름",
+          "info": "내비 제목과 별도 설정 가능"
+        },
+        "tagline": {
+          "label": "제휴 슬로건",
+          "info": "히어로 제목 아래 표시"
+        },
+        "logo_image_url": {
+          "label": "로고 이미지",
+          "info": "히어로·카드용. 투명 PNG/SVG 권장"
+        },
+        "body": {
+          "label": "본문",
+          "info": "메인 컬럼 리치 텍스트"
+        },
+        "partner_type": {
+          "label": "파트너 유형",
+          "info": "선택지는 「일반 설정」→「파트너 유형 옵션(전역)」에서 가져옵니다."
+        },
+        "region": {
+          "label": "지역",
+          "info": "선택지는 「일반 설정」→「파트너 지역 옵션(전역)」에서 가져옵니다."
+        },
+        "partner_tier": {
+          "label": "등급",
+          "info": "선택지는 「일반 설정」→「파트너 등급 옵션(전역)」에서 가져옵니다."
+        },
+        "website_url": {
+          "label": "웹사이트 URL"
+        },
+        "action_link": {
+          "label": "주요 CTA 링크",
+          "info": "앱 설치, 파트너 문의 등"
+        },
+        "action_label": {
+          "label": "주요 CTA 라벨",
+          "info": "비어 있으면 유형별 기본 문구"
+        },
+        "resource_links": {
+          "label": "리소스 링크",
+          "info": "한 줄에 하나: 제목|https://..."
+        },
+        "contact_email": {
+          "label": "연락 이메일"
+        },
+        "industries": {
+          "label": "커버 산업",
+          "info": "쉼표 또는 줄바꿈 구분"
+        }
+      }
+    },
+    "static_become_a_partner": {
+      "name": "파트너 되기",
+      "description": "다단계 리드 폼"
+    },
+    "static_dashboard": {
+      "name": "파트너 포털(미리보기)",
+      "description": "로그인 후 샘플 홈: 히어로 이미지와 기능 카드"
     }
   },
   "generic": {
@@ -30,7 +92,7 @@
     "settings": {
       "slogan": {
         "label": "슬로건",
-        "default": "제품 릴리스 가이드에 오신 것을 환영합니다"
+        "default": "파트너·연동 생태계 포털"
       },
       "company_name": {
         "label": "회사명",
@@ -40,6 +102,22 @@
       "copyright_info": {
         "label": "저작권/ICP 정보",
         "placeholder": "ICP No.15035023"
+      },
+      "partner_lead_email": {
+        "label": "파트너 리드 수신 이메일",
+        "info": "신청 폼의 mailto 수신 주소. 비어 있으면 복사용 요약만 표시"
+      },
+      "partner_type": {
+        "label": "파트너 유형 옵션(전역)",
+        "info": "한 줄에 하나의 값(표시·저장 동일). Liquid에서는 newline_to_br | split: '<br />'로 배열화. 홈 추천 연동은 첫 줄 유형, 솔루션 파트너는 둘째 줄 유형과 일치하는 페이지를 표시."
+      },
+      "partner_region": {
+        "label": "파트너 지역 옵션(전역)",
+        "info": "한 줄에 하나의 지역명. Liquid에서는 newline_to_br | split: '<br />'로 배열화. 상세 페이지·목록 필터에 사용."
+      },
+      "partner_tier": {
+        "label": "파트너 등급 옵션(전역)",
+        "info": "한 줄에 하나의 등급명. Liquid에서는 newline_to_br | split: '<br />'로 배열화. 상세 페이지·목록 필터에 사용."
       },
       "is_allow_feedback": {
         "label": "사용자 피드백 표시"
@@ -54,7 +132,7 @@
         "label": "푸터 섹션 표시"
       },
       "sort_rule": {
-        "label": "홈페이지 목록 표시 규칙",
+        "label": "목록 정렬",
         "options": {
           "created_at_desc": "생성일 - 내림차순",
           "created_at_asc": "생성일 - 오름차순",

@@ -20,7 +20,7 @@
         {% for useful_type in useful_types %}
           <label
             class="inline-flex py-4 cursor-pointer badge badge-soft"
-            :class="selected === '{{ useful_type.emoji |  escape_once }}' ? '!bg-primary-200 dark:!bg-primary-700 !border-primary-200 dark:!border-primary-700' : ''"
+            :class="selected === '{{ useful_type.emoji |  escape_once }}' ? '!bg-primary-200 !border-primary-200' : ''"
           >
             <input
               type="radio"

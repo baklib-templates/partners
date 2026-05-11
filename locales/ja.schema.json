@@ -1,28 +1,90 @@
 {
-  "theme_label": "リリースガイドテンプレート",
-  "theme_description": "製品アップデート、お知らせ、ニュース、ブログ、ログ、FAQなどを構築するための小型CMSコンテンツ管理システム。",
+  "theme_label": "partners",
+  "theme_description": "エンタープライズ向けエコシステム・連携ハブ。Bento レイアウトとグラスモーフィズムでインテグレーションと代理店を紹介し、リード獲得とパートナープログラムを支援します。",
   "templates": {
-    "page": {
-      "name": "記事ページ",
-      "description": "記事ページテンプレート",
+    "index": {
+      "name": "エコシステムホーム",
+      "description": "おすすめインテグレーションとソリューションパートナーの Bento、パートナー募集 CTA",
       "settings": {
-        "title": {
-          "label": "タイトル",
-          "info": "コンテンツ上部に表示される記事タイトル"
-        },
         "description": {
-          "label": "概要"
-        },
-        "tags": {
-          "label": "タグ"
-        },
-        "thumb_image_url": {
-          "label": "カバー画像"
-        },
-        "content": {
-          "label": "ページコンテンツ"
+          "label": "ホーム紹介",
+          "info": "ヒーローのガラスカードに表示するリッチテキスト"
         }
       }
+    },
+    "channel": {
+      "name": "パートナー一覧",
+      "description": "タイプ・地域・ティアで絞り込み",
+      "settings": {
+        "intro": {
+          "label": "一覧の説明",
+          "info": "タイトル下に表示する短い説明"
+        }
+      }
+    },
+    "page": {
+      "name": "パートナー / 連携詳細",
+      "description": "ヒーロー、2 カラム本文とサイドバー",
+      "settings": {
+        "title": {
+          "label": "パートナー / アプリ名",
+          "info": "ナビゲーション表示名と別に設定可能"
+        },
+        "tagline": {
+          "label": "提携タグライン",
+          "info": "ヒーロー見出しの下に表示"
+        },
+        "logo_image_url": {
+          "label": "ロゴ画像",
+          "info": "ヒーロー・カード用。透過 PNG/SVG 推奨"
+        },
+        "body": {
+          "label": "本文",
+          "info": "メインカラムのリッチテキスト"
+        },
+        "partner_type": {
+          "label": "パートナー種別",
+          "info": "候補は「一般設定」→「パートナー種別オプション（全体）」から取得します。"
+        },
+        "region": {
+          "label": "地域",
+          "info": "候補は「一般設定」→「パートナー地域オプション（全体）」から取得します。"
+        },
+        "partner_tier": {
+          "label": "ティア",
+          "info": "候補は「一般設定」→「パートナーティアオプション（全体）」から取得します。"
+        },
+        "website_url": {
+          "label": "公式サイト URL"
+        },
+        "action_link": {
+          "label": "主 CTA リンク",
+          "info": "アプリ導入、問い合わせなど"
+        },
+        "action_label": {
+          "label": "主 CTA ラベル",
+          "info": "未入力時は種別に応じた既定文言"
+        },
+        "resource_links": {
+          "label": "リソースリンク",
+          "info": "1 行に 1 件：タイトル|https://..."
+        },
+        "contact_email": {
+          "label": "連絡メール"
+        },
+        "industries": {
+          "label": "対象業種",
+          "info": "カンマまたは改行区切り"
+        }
+      }
+    },
+    "static_become_a_partner": {
+      "name": "パートナー申請",
+      "description": "複数ステップのリードフォーム"
+    },
+    "static_dashboard": {
+      "name": "パートナーポータル（プレビュー）",
+      "description": "ログイン後のサンプル：ヒーロー画像と機能カード"
     }
   },
   "generic": {
@@ -30,7 +92,7 @@
     "settings": {
       "slogan": {
         "label": "キャッチフレーズ",
-        "default": "製品リリースガイドへようこそ"
+        "default": "パートナー・連携エコシステムポータル"
       },
       "company_name": {
         "label": "会社名",
@@ -40,6 +102,22 @@
       "copyright_info": {
         "label": "著作権/ICP情報",
         "placeholder": "ICP No.15035023"
+      },
+      "partner_lead_email": {
+        "label": "パートナーリード受信メール",
+        "info": "申請フォームの mailto 宛先。未設定の場合はコピー用サマリーのみ表示"
+      },
+      "partner_type": {
+        "label": "パートナー種別オプション（全体）",
+        "info": "1 行に 1 値（表示と保存が同じ）。Liquid では newline_to_br | split: '<br />' で配列化。トップの「注目連携」は 1 行目、「ソリューションパートナー」は 2 行目の種別と一致するページを表示。"
+      },
+      "partner_region": {
+        "label": "パートナー地域オプション（全体）",
+        "info": "1 行に 1 地域名。Liquid では newline_to_br | split: '<br />' で配列化。詳細ページとディレクトリのフィルターに使用。"
+      },
+      "partner_tier": {
+        "label": "パートナーティアオプション（全体）",
+        "info": "1 行に 1 ティア名。Liquid では newline_to_br | split: '<br />' で配列化。詳細ページとディレクトリのフィルターに使用。"
       },
       "is_allow_feedback": {
         "label": "ユーザーフィードバックを表示"
@@ -54,7 +132,7 @@
         "label": "フッター部分を表示"
       },
       "sort_rule": {
-        "label": "ホームページリスト表示ルール",
+        "label": "一覧の並び順",
         "options": {
           "created_at_desc": "作成日時 - 降順",
           "created_at_asc": "作成日時 - 昇順",

@@ -44,15 +44,15 @@
         },
         "partner_type": {
           "label": "Partner type",
-          "info": "Integration vs agency / services"
+          "info": "Options come from General settings → Partner type options (global)."
         },
         "region": {
           "label": "Region",
-          "info": "Used for directory filters"
+          "info": "Options come from General settings → Partner region options (global); used for directory filters."
         },
         "partner_tier": {
           "label": "Tier",
-          "info": "Gold / silver badge"
+          "info": "Options come from General settings → Partner tier options (global)."
         },
         "website_url": {
           "label": "Website URL"
@@ -81,6 +81,10 @@
     "static_become_a_partner": {
       "name": "Become a partner",
       "description": "Multi-step lead form"
+    },
+    "static_dashboard": {
+      "name": "Partner portal (preview)",
+      "description": "Sample partner portal home after sign-in: hero demo image and feature cards"
     }
   },
   "generic": {
@@ -102,6 +106,18 @@
       "partner_lead_email": {
         "label": "Partner lead inbox email",
         "info": "Become-a-partner form opens a mailto to this address when set; otherwise shows a copyable summary"
+      },
+      "partner_type": {
+        "label": "Partner type options (global)",
+        "info": "One value per line (e.g. Technology & Integration); that string is both label and stored value. In Liquid, split with newline_to_br | split: '<br />'. Home featured integrations use line 1; solution partners use line 2; directory filters and page selects follow the same list."
+      },
+      "partner_region": {
+        "label": "Partner region options (global)",
+        "info": "One region name per line (e.g. APAC). Split in Liquid with newline_to_br | split: '<br />'; used on partner pages and directory filters."
+      },
+      "partner_tier": {
+        "label": "Partner tier options (global)",
+        "info": "One tier name per line (e.g. Gold). Split in Liquid with newline_to_br | split: '<br />'; used on partner pages and directory filters."
       },
       "is_allow_feedback": {
         "label": "Show User Feedback"

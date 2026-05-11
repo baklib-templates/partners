@@ -300,14 +300,14 @@
 
 /* Partners: glass cards + ambient mesh (uses theme CSS variables) */
 .partners-glass-card {
-  @apply rounded-2xl border border-white/15 bg-white/70 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-md dark:bg-slate-900/50 dark:shadow-[0_12px_40px_rgb(0,0,0,0.45)];
+  @apply rounded-2xl border border-slate-200/90 bg-white/95 shadow-[0_4px_24px_rgb(15,23,42,0.06)] backdrop-blur-sm;
 }
 
 .partners-theme .partners-prose {
-  @apply max-w-none text-slate-800 dark:text-slate-200;
+  @apply max-w-none text-slate-800;
 }
 .partners-theme .partners-prose :where(h1, h2, h3, h4) {
-  @apply text-slate-900 dark:text-slate-50;
+  @apply text-slate-900;
 }
 .partners-theme .partners-prose a {
   @apply text-primary underline-offset-2 hover:underline;

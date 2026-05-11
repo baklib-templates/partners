@@ -1,12 +1,11 @@
-<!-- from cruip mosaic theme -->
+<!-- partners: list style — light shell -->
 {% assign pages = site.pages['/'].children_in_list | order_by: '-created_at' %}
-<div class='bg-white flex-1'>
-  <div class="overflow-visible w-full max-w-5xl mx-auto h-full p-2 sm:px-0">
-    <!-- Search form -->
-    <div class='my-8 md:mb-4'>
+<div class="relative z-10 flex-1 bg-transparent text-slate-900">
+  <div class="mx-auto h-full w-full max-w-5xl overflow-visible p-2 sm:px-0">
+    <div class="partners-glass-card mb-6 p-4 sm:p-5">
       {% form_tag 'search' %}
-        <label class="input !border !border-slate-400 rounded-lg flex items-center space-x-2 px-4 py-2 w-full">
-          <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <label class="input flex w-full items-center space-x-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-800 shadow-sm backdrop-blur-sm">
+          <svg class="h-[1em] shrink-0 opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g
               stroke-linejoin="round"
               stroke-linecap="round"
@@ -18,22 +17,21 @@
               <path d="m21 21-4.3-4.3"></path>
             </g>
           </svg>
-          <input type="search" class="grow" name="{{form.keywords_field_name}}" value="{{ search.keywords | escape }}" placeholder="{{ 'generic.placeholders.search' | t }}" />
+          <input type="search" class="grow bg-transparent placeholder:text-slate-400" name="{{form.keywords_field_name}}" value="{{ search.keywords | escape }}" placeholder="{{ 'generic.placeholders.search' | t }}" />
         </label>
       {% endform_tag %}
     </div>
 
-    <!-- Tag Filters -->
     {% assign tags_size = site.tags | size %}
     {% if tags_size > 0 %}
-      <div class="my-2 md:my-4 border-b border-slate-200">
-        <ul class="flex overflow-x-scroll my-2 text-lg space-x-2 md:space-x-4 font-medium flex-nowrap md:overflow-x-hidden">
-          <li class="">
-            <a class="font-bold text-primary whitespace-nowrap" href="/">{{ 'templates.index.list.all' | t }}</a>
+      <div class="partners-glass-card mb-6 border-slate-200/80 p-4">
+        <ul class="my-2 flex flex-nowrap space-x-2 overflow-x-scroll text-base font-medium md:space-x-4 md:overflow-x-hidden">
+          <li>
+            <a class="whitespace-nowrap font-bold text-primary" href="/">{{ 'templates.index.list.all' | t }}</a>
           </li>
           {% for tag in site.tags %}
-            <li class="">
-              <a href="{{ tag.path }}" class="text-slate-500 hover:text-primary whitespace-nowrap">
+            <li>
+              <a href="{{ tag.path }}" class="whitespace-nowrap text-slate-600 hover:text-primary">
                 {{ tag.name }}
               </a>
             </li>
@@ -42,20 +40,16 @@
       </div>
     {% endif %}
 
-    <!-- Posts -->
-    <div>
+    <div class="space-y-3">
       {% paginate_tag pages, per: 9 %}
         {% for page in pages %}
           {% render 'list', page: page %}
         {% else %}
-          {{ 'generic.empty' | t }}
+          <p class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-8 text-center text-sm text-slate-500">{{ 'generic.empty' | t }}</p>
         {% endfor %}
 
-        <!-- Pagination -->
-        <div class="mt-6">
-          <div class="flex justify-end">
-            {% render 'paginate', paginate: paginate %}
-          </div>
+        <div class="mt-6 flex justify-end">
+          {% render 'paginate', paginate: paginate %}
         </div>
       {% endpaginate_tag %}
     </div>
@@ -65,11 +59,11 @@
 {% schema %}
   {
     "name": "Index",
-    "description": "List Style",
+    "description": "List Style (partners light shell)",
     "thumb_url": "images/theme/index-list.png",
     "preview_image_urls": [
       "images/theme/index-list.png"
     ],
-    "sub_page_templates": ["page"]
+    "sub_page_templates": ["page", "channel"]
   }
-{% endschema%}
+{% endschema %}

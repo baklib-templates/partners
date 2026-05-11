@@ -15,10 +15,30 @@
   },
   "partners": {
     "featured_integrations": "推荐集成",
+    "swipe_hint": "左右滑动查看更多",
     "top_solution_partners": "顶级服务商",
     "become_partner": "成为伙伴",
     "become_partner_sub": "加入生态，触达更多企业客户与开发者。",
     "browse_directory": "浏览伙伴目录",
+    "portal": "伙伴门户",
+    "dashboard": {
+      "meta_title": "伙伴门户",
+      "hero_title": "按需组合，",
+      "hero_title_accent": "灵活扩展",
+      "hero_subtitle": "为渠道伙伴打造可拼装的能力中心：目录、培训、资源与营销增长，一站式支持业务拓展。",
+      "cta_hub": "更多伙伴管理方案",
+      "demo_alt": "伙伴门户控制台界面示意图",
+      "features_heading": "伙伴门户功能",
+      "card_directory_title": "合作伙伴目录",
+      "card_directory_desc": "集中浏览与筛选生态伙伴，快速定位技术集成与渠道服务能力。",
+      "card_training_title": "合作伙伴培训",
+      "card_training_desc": "通过在线培训和认证项目，帮助合作伙伴取得成功。",
+      "card_resources_title": "合作伙伴资源",
+      "card_resources_desc": "为合作伙伴提供可下载和可定制的资源。将合适的材料精准推送给合适的合作伙伴。",
+      "card_mdf_title": "MDF项目",
+      "card_mdf_desc": "支持合作伙伴的营销活动，携手共赢。营销发展基金计划是提升销售额的有效途径。",
+      "card_more": "了解更多"
+    },
     "install_app": "安装应用",
     "contact_partner": "联系伙伴",
     "visit_website": "访问官网",
@@ -51,7 +71,11 @@
     "form_done_mailto": "使用邮件发送",
     "form_done_copy": "复制摘要",
     "view_detail": "查看详情",
-    "form_lead_hint": "请在站点「通用设置」中填写「伙伴入驻线索邮箱」，以启用一键邮件发送。"
+    "form_lead_hint": "请在站点「通用设置」中填写「伙伴入驻线索邮箱」，以启用一键邮件发送。",
+    "form_submit_feedback": "提交申请",
+    "form_feedback_placeholder": "请核对或修改以下正文，将作为一条「反馈」提交给站点管理员。",
+    "form_feedback_hint": "通过站点反馈系统提交，便于在 CMS 中统一查看与跟进。",
+    "form_feedback_unavailable": "在线提交需开启站点反馈并启用留言字段。请先复制摘要或使用下方邮件。"
   },
   "templates": {
     "index": {

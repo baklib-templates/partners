@@ -5,6 +5,16 @@ site:
     company_name: "示例公司"
     copyright_info: "京ICP备xxxxxxxx号"
     partner_lead_email: "partners@example.com"
+    partner_type: |
+      技术&集成
+      渠道&服务商
+    partner_region: |
+      北美
+      北欧
+      亚太
+    partner_tier: |
+      金牌
+      银牌
     head_html: ""
     header_menu_html: |
       <a href="/partner-hub" class="text-white/90 hover:text-white hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">伙伴目录</a>

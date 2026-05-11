@@ -91,6 +91,30 @@
         "placeholder": "partners@example.com"
       },
       {
+        "id": "partner_type",
+        "type": "textarea",
+        "label": "t:schema.generic.settings.partner_type.label",
+        "info": "t:schema.generic.settings.partner_type.info",
+        "rows": 6,
+        "default": "技术&集成\n渠道&服务商"
+      },
+      {
+        "id": "partner_region",
+        "type": "textarea",
+        "label": "t:schema.generic.settings.partner_region.label",
+        "info": "t:schema.generic.settings.partner_region.info",
+        "rows": 6,
+        "default": "北美\n北欧\n亚太"
+      },
+      {
+        "id": "partner_tier",
+        "type": "textarea",
+        "label": "t:schema.generic.settings.partner_tier.label",
+        "info": "t:schema.generic.settings.partner_tier.info",
+        "rows": 6,
+        "default": "金牌\n银牌"
+      },
+      {
         "id": "sort_rule",
         "type": "select",
         "label": "t:schema.generic.settings.sort_rule.label",
