@@ -1,0 +1,104 @@
+{% set_meta_title 'Become a partner' %}
+{% assign lead_email = site.settings.partner_lead_email | strip %}
+
+<div class="relative z-10 mx-auto max-w-lg px-4 pb-20 pt-8 sm:px-6">
+  <div
+    class="partners-glass-card p-6 sm:p-8"
+    data-lead-email="{{ lead_email | escape }}"
+    x-data="{
+      step: 1,
+      company: '',
+      intent: '',
+      email: '',
+      phone: '',
+      copied: false,
+      leadTo() {
+        return (this.$el.dataset.leadEmail || '').trim();
+      },
+      summary() {
+        return [
+          '{{ 'partners.form_company' | t }}: ' + this.company,
+          '{{ 'partners.form_intent' | t }}: ' + this.intent,
+          '{{ 'partners.form_email' | t }}: ' + this.email,
+          '{{ 'partners.form_phone' | t }}: ' + this.phone
+        ].join('\n');
+      },
+      openMailFixed() {
+        const to = this.leadTo();
+        if (!to) return;
+        const subject = encodeURIComponent('{{ site.name | escape }} — {{ 'partners.become_partner' | t }}');
+        const body = encodeURIComponent(this.summary());
+        window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+      },
+      async copySummary() {
+        try {
+          await navigator.clipboard.writeText(this.summary());
+          this.copied = true;
+          setTimeout(() => { this.copied = false }, 2000);
+        } catch (e) {
+          this.copied = false;
+        }
+      },
+      goNext() {
+        if (this.step === 1 && !this.company.trim()) return;
+        if (this.step === 2 && !this.intent.trim()) return;
+        if (this.step === 3 && !this.email.trim()) return;
+        if (this.step < 4) this.step++;
+      }
+    }"
+  >
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">{{ 'partners.become_partner' | t }}</h1>
+    <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ 'partners.become_partner_sub' | t }}</p>
+
+    <div class="mt-8 flex gap-2">
+      <span class="h-1.5 flex-1 rounded-full transition" :class="step >= 1 ? 'bg-primary' : 'bg-slate-300/40 dark:bg-slate-600'"></span>
+      <span class="h-1.5 flex-1 rounded-full transition" :class="step >= 2 ? 'bg-primary' : 'bg-slate-300/40 dark:bg-slate-600'"></span>
+      <span class="h-1.5 flex-1 rounded-full transition" :class="step >= 3 ? 'bg-primary' : 'bg-slate-300/40 dark:bg-slate-600'"></span>
+      <span class="h-1.5 flex-1 rounded-full transition" :class="step >= 4 ? 'bg-primary' : 'bg-slate-300/40 dark:bg-slate-600'"></span>
+    </div>
+
+    <div class="mt-8 space-y-5">
+      <div x-show="step === 1" class="space-y-3">
+        <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">{{ 'partners.form_company' | t }}</label>
+        <input x-model="company" type="text" class="input input-bordered w-full border-white/20 bg-white/80 dark:bg-slate-900/60" autocomplete="organization" />
+      </div>
+
+      <div x-show="step === 2" class="space-y-3" x-cloak>
+        <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">{{ 'partners.form_intent' | t }}</label>
+        <textarea x-model="intent" rows="4" class="textarea textarea-bordered w-full border-white/20 bg-white/80 dark:bg-slate-900/60"></textarea>
+      </div>
+
+      <div x-show="step === 3" class="space-y-4" x-cloak>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">{{ 'partners.form_email' | t }}</label>
+          <input x-model="email" type="email" class="input input-bordered mt-1 w-full border-white/20 bg-white/80 dark:bg-slate-900/60" autocomplete="email" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">{{ 'partners.form_phone' | t }}</label>
+          <input x-model="phone" type="tel" class="input input-bordered mt-1 w-full border-white/20 bg-white/80 dark:bg-slate-900/60" autocomplete="tel" />
+        </div>
+      </div>
+
+      <div x-show="step === 4" class="space-y-4" x-cloak>
+        <p class="text-sm font-medium text-slate-700 dark:text-slate-200">{{ 'partners.form_summary' | t }}</p>
+        <pre class="max-h-48 overflow-auto rounded-lg border border-white/15 bg-slate-950/40 p-3 text-xs text-slate-200" x-text="summary()"></pre>
+        {% if lead_email != blank %}
+          <button type="button" class="btn btn-primary w-full" @click="openMailFixed()">{{ 'partners.form_done_mailto' | t }}</button>
+        {% endif %}
+        <button type="button" class="btn btn-outline w-full border-white/20" @click="copySummary()">
+          <span x-show="!copied">{{ 'partners.form_done_copy' | t }}</span>
+          <span x-show="copied" x-cloak>OK</span>
+        </button>
+        {% if lead_email == blank %}
+          <p class="text-xs text-slate-500">{{ 'partners.form_lead_hint' | t }}</p>
+        {% endif %}
+      </div>
+
+      <div class="flex justify-between gap-3 pt-2">
+        <button type="button" class="btn btn-ghost" x-show="step > 1 && step < 4" x-cloak @click="step--">{{ 'partners.form_back' | t }}</button>
+        <span class="flex-1"></span>
+        <button type="button" class="btn btn-primary" x-show="step < 4" @click="goNext()">{{ 'partners.form_next' | t }}</button>
+      </div>
+    </div>
+  </div>
+</div>

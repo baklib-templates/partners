@@ -1,0 +1,19 @@
+{%- liquid
+  assign ptype_raw = page.settings.partner_type
+  assign ptype = ptype_raw.value | default: ptype_raw | default: 'agency'
+  assign display_name = page.settings.title | default: page.link_text | strip_html | strip
+  assign page_url = page.url
+  assign desc = page.settings.body | strip_html | strip | truncate: 280, ''
+  assign desc_esc = desc | replace: '\', '\\\\' | replace: '"', '\"'
+  assign name_esc = display_name | replace: '\', '\\\\' | replace: '"', '\"'
+  assign url_esc = page_url | replace: '\', '\\\\' | replace: '"', '\"'
+  assign web_raw = page.settings.website_url
+  assign website = web_raw.value | default: web_raw | strip
+-%}
+<script type="application/ld+json">
+{% if ptype == 'integration' %}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"{{ name_esc }}","url":"{{ url_esc }}","description":"{{ desc_esc }}","applicationCategory":"BusinessApplication"{% if website != blank %},"sameAs":"{{ website | replace: '"', '\"' }}"{% endif %}}
+{% else %}
+{"@context":"https://schema.org","@type":"Organization","name":"{{ name_esc }}","url":"{{ url_esc }}","description":"{{ desc_esc }}"{% if website != blank %},"sameAs":"{{ website | replace: '"', '\"' }}"{% endif %}{% assign em = page.settings.contact_email | strip %}{% if em != blank %},"email":"{{ em | replace: '"', '\"' }}"{% endif %}}
+{% endif %}
+</script>

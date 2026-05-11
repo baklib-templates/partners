@@ -1,0 +1,136 @@
+{% assign sort_rule = site.settings.sort_rule.value | default: site.settings.sort_rule | default: '-created_at' %}
+{% assign items = page.children_in_list | order_by: sort_rule %}
+{% capture _ch_title %}{{ page.link_text }}{% endcapture %}
+{% set_meta_title _ch_title | strip %}
+
+<div
+  class="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:flex-row lg:items-start lg:gap-10 lg:px-8"
+  x-data="{
+    partnerType: 'all',
+    region: 'all',
+    tier: 'all',
+    matches(el) {
+      const t = el.dataset.partnerType || '';
+      const r = el.dataset.region || '';
+      const v = el.dataset.tier || '';
+      const okType = this.partnerType === 'all' || t === this.partnerType;
+      const okReg = this.region === 'all' || r === this.region;
+      const okTier = this.tier === 'all' || v === this.tier;
+      return okType && okReg && okTier;
+    }
+  }"
+>
+  <aside class="w-full shrink-0 lg:sticky lg:top-24 lg:w-72">
+    <nav class="mb-3 flex flex-wrap gap-2 text-xs text-slate-400" aria-label="Breadcrumb">
+      <a href="{{ site.index_path }}" class="hover:text-primary" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'generic.back_to_home' | t }}</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-slate-200">{{ page.link_text }}</span>
+    </nav>
+    <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">{{ page.link_text }}</h1>
+    {% assign intro = page.settings.intro | strip %}
+    {% if intro != blank %}
+      <p class="mt-3 text-sm leading-relaxed text-slate-400">{{ intro }}</p>
+    {% endif %}
+
+    <div class="partners-glass-card mt-6 space-y-6 p-5 lg:mt-8">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_type' | t }}</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="partnerType === 'all' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="partnerType = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="partnerType === 'integration' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="partnerType = 'integration'">{{ 'partners.type_integration' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="partnerType === 'agency' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="partnerType = 'agency'">{{ 'partners.type_agency' | t }}</button>
+        </div>
+      </div>
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_region' | t }}</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="region === 'all' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="region = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="region === 'na' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="region = 'na'">{{ 'partners.region_na' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="region === 'nordic' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="region = 'nordic'">{{ 'partners.region_nordic' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="region === 'apac' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="region = 'apac'">{{ 'partners.region_apac' | t }}</button>
+        </div>
+      </div>
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_tier' | t }}</p>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="tier === 'all' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="tier = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="tier === 'gold' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="tier = 'gold'">{{ 'partners.tier_gold' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm" :class="tier === 'silver' ? 'btn-primary' : 'btn-ghost border border-white/15'" @click="tier = 'silver'">{{ 'partners.tier_silver' | t }}</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="min-w-0 flex-1">
+    <div x-ref="grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {% for p in items %}
+        {% if p.template_name == 'page' %}
+          {% assign ptype_raw = p.settings.partner_type %}
+          {% assign ptype = ptype_raw.value | default: ptype_raw | default: 'agency' %}
+          {% assign reg_raw = p.settings.region %}
+          {% assign reg = reg_raw.value | default: reg_raw | default: 'apac' %}
+          {% assign tier_raw = p.settings.partner_tier %}
+          {% assign tier_v = tier_raw.value | default: tier_raw | default: 'silver' %}
+          <article
+            data-partner-card
+            data-partner-type="{{ ptype }}"
+            data-region="{{ reg }}"
+            data-tier="{{ tier_v }}"
+            class="partners-glass-card flex flex-col p-5 transition hover:border-primary/40"
+            x-show="matches($el)"
+          >
+            <div class="flex items-start gap-3">
+              {% assign logo_u = p.settings.logo_image_url | presence %}
+              {% if logo_u %}
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/90 p-1.5 dark:bg-slate-800/90">
+                  <img src="{{ logo_u }}" alt="" width="48" height="48" class="max-h-full max-w-full object-contain" loading="lazy" />
+                </div>
+              {% endif %}
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap gap-1.5">
+                  {% if ptype == 'integration' %}
+                    <span class="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">{{ 'partners.type_integration' | t }}</span>
+                  {% else %}
+                    <span class="rounded bg-secondary/20 px-1.5 py-0.5 text-[10px] font-semibold text-sky-200">{{ 'partners.type_agency' | t }}</span>
+                  {% endif %}
+                  {% if tier_v == 'gold' %}
+                    <span class="rounded bg-amber-400/20 px-1.5 py-0.5 text-[10px] font-semibold text-amber-100">{{ 'partners.tier_gold' | t }}</span>
+                  {% elsif tier_v == 'silver' %}
+                    <span class="rounded bg-slate-400/20 px-1.5 py-0.5 text-[10px] font-semibold text-slate-200">{{ 'partners.tier_silver' | t }}</span>
+                  {% endif %}
+                </div>
+                <h2 class="mt-2 truncate text-base font-semibold text-slate-900 dark:text-white">
+                  <a href="{{ p.path }}" class="hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ p.settings.title | default: p.link_text }}</a>
+                </h2>
+                {% assign one = p.settings.tagline | strip %}
+                {% if one == blank %}
+                  {% assign one = p.settings.body | strip_html | strip | truncate: 120 %}
+                {% endif %}
+                <p class="mt-1 line-clamp-3 text-sm text-slate-600 dark:text-slate-300">{{ one }}</p>
+              </div>
+            </div>
+            <a href="{{ p.path }}" class="btn btn-ghost btn-sm mt-4 w-fit border border-white/10 text-slate-800 dark:text-white" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ 'partners.view_detail' | t }}</a>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <p class="mt-6 text-center text-sm text-slate-500" x-show="Array.from($refs.grid.querySelectorAll('[data-partner-card]')).every((el) => !matches(el))">{{ 'partners.no_match' | t }}</p>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.channel.name",
+    "description": "t:schema.templates.channel.description",
+    "thumb_url": "images/theme/index-list.png",
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "intro",
+        "type": "textarea",
+        "label": "t:schema.templates.channel.settings.intro.label",
+        "info": "t:schema.templates.channel.settings.intro.info"
+      }
+    ]
+  }
+{% endschema %}

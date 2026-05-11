@@ -1,0 +1,92 @@
+{
+  "snippets": {
+    "feedback_form": {
+      "title": "Submit Feedback",
+      "message_label": "Message",
+      "message_placeholder": "Please enter your feedback",
+      "message_required": "Feedback cannot be empty",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "feedback_button": {
+      "title_posted": "Thank you for your feedback",
+      "title_unposted": "Submit Feedback"
+    }
+  },
+  "partners": {
+    "featured_integrations": "Featured integrations",
+    "top_solution_partners": "Top solution partners",
+    "become_partner": "Become a partner",
+    "become_partner_sub": "Join the ecosystem and reach more customers and developers.",
+    "browse_directory": "Browse directory",
+    "install_app": "Install app",
+    "contact_partner": "Contact partner",
+    "visit_website": "Visit website",
+    "sidebar_resources": "Resources",
+    "sidebar_contact": "Email",
+    "sidebar_industries": "Industries",
+    "tier_gold": "Gold",
+    "tier_silver": "Silver",
+    "type_integration": "Integration",
+    "type_agency": "Agency",
+    "filter_type": "Partner type",
+    "filter_region": "Region",
+    "filter_tier": "Tier",
+    "filter_all": "All",
+    "region_na": "North America",
+    "region_nordic": "Nordic",
+    "region_apac": "APAC",
+    "no_match": "No partners match the filters",
+    "form_step1": "Company",
+    "form_step2": "Intent",
+    "form_step3": "Contact",
+    "form_company": "Company name",
+    "form_intent": "Partnership intent",
+    "form_email": "Work email",
+    "form_phone": "Phone",
+    "form_next": "Next",
+    "form_back": "Back",
+    "form_submit": "Submit",
+    "form_summary": "Review",
+    "form_done_mailto": "Send via email",
+    "form_done_copy": "Copy summary",
+    "view_detail": "View details",
+    "form_lead_hint": "Set the partner lead inbox email in site settings to enable one-click mailto."
+  },
+  "templates": {
+    "index": {
+      "list": {
+        "all": "All"
+      }
+    },
+    "page": {
+      "current_version": "Current",
+      "visit_count": "Visits"
+    }
+  },
+  "paginate": {
+    "showing": "currently showing",
+    "total": "total",
+    "records": "records",
+    "previous": "Previous Page",
+    "next": "Next Page"
+  },
+  "generic": {
+    "feedback_created_at": "Last Feedback At",
+    "empty": "No Data",
+    "all_tags": "All Tags",
+    "recent_updates": "Recent Updates",
+    "back_to_home": "Back to Home",
+    "copyright": "Copyright",
+    "submit": "Submit",
+    "placeholders": {
+      "search": "Search",
+      "input_feedback": "Please enter your feedback"
+    },
+    "buttons": {
+      "close": "Close",
+      "signout": "Sign Out",
+      "signin": "Sign In"
+    }
+  }
+}

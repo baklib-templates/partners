@@ -1,0 +1,111 @@
+{
+  "theme_label": "リリースガイドテンプレート",
+  "theme_description": "製品アップデート、お知らせ、ニュース、ブログ、ログ、FAQなどを構築するための小型CMSコンテンツ管理システム。",
+  "templates": {
+    "page": {
+      "name": "記事ページ",
+      "description": "記事ページテンプレート",
+      "settings": {
+        "title": {
+          "label": "タイトル",
+          "info": "コンテンツ上部に表示される記事タイトル"
+        },
+        "description": {
+          "label": "概要"
+        },
+        "tags": {
+          "label": "タグ"
+        },
+        "thumb_image_url": {
+          "label": "カバー画像"
+        },
+        "content": {
+          "label": "ページコンテンツ"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "一般設定",
+    "settings": {
+      "slogan": {
+        "label": "キャッチフレーズ",
+        "default": "製品リリースガイドへようこそ"
+      },
+      "company_name": {
+        "label": "会社名",
+        "default": "Baklib.cn",
+        "info": "フッター部分に表示"
+      },
+      "copyright_info": {
+        "label": "著作権/ICP情報",
+        "placeholder": "ICP No.15035023"
+      },
+      "is_allow_feedback": {
+        "label": "ユーザーフィードバックを表示"
+      },
+      "is_show_visit_count": {
+        "label": "アクセス数を表示"
+      },
+      "is_allow_header": {
+        "label": "ヘッダー部分を表示"
+      },
+      "is_allow_footer": {
+        "label": "フッター部分を表示"
+      },
+      "sort_rule": {
+        "label": "ホームページリスト表示ルール",
+        "options": {
+          "created_at_desc": "作成日時 - 降順",
+          "created_at_asc": "作成日時 - 昇順",
+          "edited_at_desc": "更新日時 - 降順",
+          "edited_at_asc": "更新日時 - 昇順",
+          "visit_count_desc": "アクセス数（多い順）",
+          "visit_count_asc": "アクセス数（少ない順）",
+          "manual": "手動ソート"
+        }
+      }
+    }
+  },
+  "custom_html": {
+    "name": "カスタムHTMLコード",
+    "settings": {
+      "head_html": {
+        "label": "<head></head>タグ内のカスタムHTML",
+        "info": "HTMLタグと限定的なTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、アクセス解析、カスタマーサービスボットなどを挿入"
+      },
+      "header_menu_html": {
+        "label": "トップナビゲーション領域にHTMLを挿入",
+        "info": "HTMLタグと限定的なTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトのナビゲーションリンクを挿入"
+      },
+      "footer_menu_html": {
+        "label": "フッター領域にHTMLを挿入",
+        "info": "HTMLタグと限定的なTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、外部ナビゲーションリンク、友情リンク、SEO最適化リンクなどを挿入"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "ウィーチャット構成",
+      "weixin_app_id": {
+        "label": "開発者ID（AppID）",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat公衆番号/設定と開発/開発インタフェース管理</a>で取得"
+      },
+      "weixin_app_secret": {
+        "label": "開発者パスワード（AppSecret）",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "ウィチャット共有を有効にするかどうか",
+        "info": "サイトページの微信共有を提供する能力</br>1.微信公衆番号にipホワイトリスト（ip:${service _ ip}）を設定してください。設定後に有効化が遅れる時間があります。</br>2.ウィーチャット共有権限がオンになっているかどうかをチェックし、ウィーチャット公式アカウント/設定と開発/開発インタフェース管理：<a href='https://mp.weixin.qq.com/cgi-bin/frame'>ウェブサービス/共有インターフェース</a>。</br>3.共有リンクがカードかどうか：カード形式から共有カード形式に入り、リンク形式から共有リンク形式に入る、ウェブページの初期リンク共有は、会社のサービス番号またはコレクション後にカード共有することができます（この規則は微信共有制限です）。"
+      },
+      "weixin_debug": {
+        "label": "debugプロンプトをオンにするかどうか",
+        "info": "このオプションは構成段階でのみ有効にしてください。オンにすると、フロントエンドサイトにアクセスする際に微信共有が正しく構成されていない場合、エラーメッセージが自動的に表示されます"
+      }
+    }
+  }
+}

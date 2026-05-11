@@ -1,0 +1,111 @@
+{
+  "theme_label": "發布指南模版",
+  "theme_description": "小型CMS內容管理系統，用於構建如產品更新、公告發布、新聞、博客、日誌、常見問題等。",
+  "templates": {
+    "page": {
+      "name": "文章頁面",
+      "description": "文章頁面模板",
+      "settings": {
+        "title": {
+          "label": "標題",
+          "info": "顯示在正文上方的文章標題"
+        },
+        "description": {
+          "label": "摘要"
+        },
+        "tags": {
+          "label": "標籤"
+        },
+        "thumb_image_url": {
+          "label": "封面圖"
+        },
+        "content": {
+          "label": "頁面內容"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "通用設置",
+    "settings": {
+      "slogan": {
+        "label": "一句話描述",
+        "default": "歡迎查看產品發布指南"
+      },
+      "company_name": {
+        "label": "公司名稱",
+        "default": "Baklib.cn",
+        "info": "顯示在頁面底部頁腳位置"
+      },
+      "copyright_info": {
+        "label": "備案/版權信息",
+        "placeholder": "蜀ICP備15035023號"
+      },
+      "is_allow_feedback": {
+        "label": "是否展示用戶反饋"
+      },
+      "is_show_visit_count": {
+        "label": "是否展示訪問量"
+      },
+      "is_allow_header": {
+        "label": "是否展示頁頭Header部分"
+      },
+      "is_allow_footer": {
+        "label": "是否展示頁腳Footer部分"
+      },
+      "sort_rule": {
+        "label": "首頁頁面列表展示規則",
+        "options": {
+          "created_at_desc": "按創建日期-倒序",
+          "created_at_asc": "按創建日期-正序",
+          "edited_at_desc": "按更新日期-倒序",
+          "edited_at_asc": "按更新日期-正序",
+          "visit_count_desc": "按訪問量（從多到少）",
+          "visit_count_asc": "按訪問量（從少到多）",
+          "manual": "手動排序"
+        }
+      }
+    }
+  },
+  "custom_html": {
+    "name": "自定義 HTML 代碼",
+    "settings": {
+      "head_html": {
+        "label": "自定義 <head></head> 標籤中的 HTML",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入訪問統計、客服機器人等嵌入代碼"
+      },
+      "header_menu_html": {
+        "label": "頂部導航區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航鏈接"
+      },
+      "footer_menu_html": {
+        "label": "底部區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的外部導航鏈接、友情鏈接、SEO 優化鏈接等"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "微信配寘",
+      "weixin_app_id": {
+        "label": "開發者ID（AppID）",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公眾號/設定與開發/開發介面管理</a>中獲取"
+      },
+      "weixin_app_secret": {
+        "label": "開發者密碼（AppSecret）",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "是否啟用微信分享",
+        "info": "提供網站頁面微信分享的能力</br>1.請在微信公眾號中配寘ip白名單（ip: ${service_ip}），配寘後將有一段時間的生效延遲。 </br>2.檢查是否開啟微信分享許可權，微信公眾號/設定與開發/開發介面管理：<a href='https://mp.weixin.qq.com/cgi-bin/frame'>網頁服務/分享介面</a>。</br>3.分享連結是否為卡片：從卡片形式進入分享卡片形式，連結形式進入分享連結形式； 網頁初始連結分享可由公司的服務號中或收藏後進行卡片分享（此規則為微信分享限制）。"
+      },
+      "weixin_debug": {
+        "label": "是否開啟debug提示",
+        "info": "請僅在配寘階段開啟此選項； 開啟後在訪問前端網站時若未正確配寘微信分享將自動提示錯誤資訊"
+      }
+    }
+  }
+}
