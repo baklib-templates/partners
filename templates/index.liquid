@@ -9,6 +9,36 @@
 {% assign idx_pt_lines = idx_pt_src | strip | newline_to_br | split: '<br />' %}
 {% assign type_integration_key = idx_pt_lines[0] | strip %}
 {% assign type_agency_key = idx_pt_lines[1] | strip %}
+{% if type_integration_key == blank %}
+  {% assign type_integration_key = 'partners.type_integration' | t | strip %}
+{% endif %}
+{% if type_agency_key == blank %}
+  {% assign type_agency_key = 'partners.type_agency' | t | strip %}
+{% endif %}
+{% assign idx_reg_src = site.settings.partner_region.value | default: site.settings.partner_region | default: '' %}
+{% assign idx_reg_lines = idx_reg_src | strip | newline_to_br | split: '<br />' %}
+{% assign region_na_key = idx_reg_lines[0] | strip %}
+{% assign region_nordic_key = idx_reg_lines[1] | strip %}
+{% assign region_apac_key = idx_reg_lines[2] | strip %}
+{% if region_na_key == blank %}
+  {% assign region_na_key = 'partners.region_na' | t | strip %}
+{% endif %}
+{% if region_nordic_key == blank %}
+  {% assign region_nordic_key = 'partners.region_nordic' | t | strip %}
+{% endif %}
+{% if region_apac_key == blank %}
+  {% assign region_apac_key = 'partners.region_apac' | t | strip %}
+{% endif %}
+{% assign idx_tier_src = site.settings.partner_tier.value | default: site.settings.partner_tier | default: '' %}
+{% assign idx_tier_lines = idx_tier_src | strip | newline_to_br | split: '<br />' %}
+{% assign tier_gold_key = idx_tier_lines[0] | strip %}
+{% assign tier_silver_key = idx_tier_lines[1] | strip %}
+{% if tier_gold_key == blank %}
+  {% assign tier_gold_key = 'partners.tier_gold' | t | strip %}
+{% endif %}
+{% if tier_silver_key == blank %}
+  {% assign tier_silver_key = 'partners.tier_silver' | t | strip %}
+{% endif %}
 
 {%- comment -%}
   背景光斑：与正文同处一个 relative + isolate 容器内，z-0 在 z-10 内容之下；
@@ -51,7 +81,10 @@
         {% for p in partners_src %}
           {% if p.template_name == 'page' and int_shown < 6 %}
             {% assign ptype_raw = p.settings.partner_type %}
-            {% assign ptype = ptype_raw.value | default: ptype_raw %}
+            {% assign ptype = ptype_raw.value | default: ptype_raw | default: '' %}
+            {% if type_integration_key != blank and ptype == 'integration' %}
+              {% assign ptype = type_integration_key %}
+            {% endif %}
             {% if type_integration_key != blank and ptype == type_integration_key %}
               <article class="partners-glass-card flex w-[min(20rem,calc(100vw-2.5rem))] shrink-0 snap-start flex-col justify-between p-5 sm:w-80 sm:p-6">
                   <div class="flex items-start gap-4">
@@ -63,11 +96,16 @@
                     {% endif %}
                     <div class="min-w-0 flex-1">
                       <div class="flex flex-wrap items-center gap-2">
-                        <span class="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">{{ ptype | escape }}</span>
+                        <span class="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">{{ ptype | escape_once }}</span>
                         {% assign tier_raw = p.settings.partner_tier %}
-                        {% assign tier = tier_raw.value | default: tier_raw %}
+                        {% assign tier = tier_raw.value | default: tier_raw | default: '' %}
+                        {% if tier_gold_key != blank and tier == 'gold' %}
+                          {% assign tier = tier_gold_key %}
+                        {% elsif tier_silver_key != blank and tier == 'silver' %}
+                          {% assign tier = tier_silver_key %}
+                        {% endif %}
                         {% if tier != blank %}
-                          <span class="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-semibold text-slate-700">{{ tier | escape }}</span>
+                          <span class="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-semibold text-slate-700">{{ tier | escape_once }}</span>
                         {% endif %}
                       </div>
                       <h4 class="mt-2 line-clamp-2 text-base font-semibold leading-snug text-slate-900 sm:text-lg">
@@ -110,7 +148,10 @@
       {% for p in partners_src %}
         {% if p.template_name == 'page' and ag_shown < 6 %}
           {% assign ptype_raw = p.settings.partner_type %}
-          {% assign ptype = ptype_raw.value | default: ptype_raw %}
+          {% assign ptype = ptype_raw.value | default: ptype_raw | default: '' %}
+          {% if type_agency_key != blank and ptype == 'agency' %}
+            {% assign ptype = type_agency_key %}
+          {% endif %}
           {% if type_agency_key != blank and ptype == type_agency_key %}
             {% assign span = ag_span[ag_shown] | strip %}
             <article class="partners-glass-card {{ span }} col-span-12 flex flex-col p-5 sm:p-6">
@@ -122,7 +163,7 @@
                   </div>
                 {% endif %}
                 <div class="min-w-0 flex-1">
-                  <span class="inline-flex rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-800">{{ ptype | escape }}</span>
+                  <span class="inline-flex rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-800">{{ ptype | escape_once }}</span>
                   <h4 class="mt-2 text-base font-semibold text-slate-900">
                     <a class="hover:underline" href="{{ p.path }}" data-turbo-frame="main-content-frame" data-turbo-action="advance">{{ p.settings.title | default: p.link_text }}</a>
                   </h4>

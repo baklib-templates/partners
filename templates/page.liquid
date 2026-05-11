@@ -2,8 +2,19 @@
 {% assign site_pt_lines = site_pt_src | strip | newline_to_br | split: '<br />' %}
 {% assign type_integration_key = site_pt_lines[0] | strip %}
 {% assign type_agency_key = site_pt_lines[1] | strip %}
+{% if type_integration_key == blank %}
+  {% assign type_integration_key = 'partners.type_integration' | t | strip %}
+{% endif %}
+{% if type_agency_key == blank %}
+  {% assign type_agency_key = 'partners.type_agency' | t | strip %}
+{% endif %}
 {% assign ptype_raw = page.settings.partner_type %}
 {% assign ptype = ptype_raw.value | default: ptype_raw | default: type_agency_key | default: type_integration_key | default: '' %}
+{% if type_integration_key != blank and ptype == 'integration' %}
+  {% assign ptype = type_integration_key %}
+{% elsif type_agency_key != blank and ptype == 'agency' %}
+  {% assign ptype = type_agency_key %}
+{% endif %}
 {% assign display_title = page.settings.title | default: page.link_text %}
 {% assign tagline = page.settings.tagline | strip %}
 {% assign logo_u = page.settings.logo_image_url | presence %}
@@ -28,12 +39,12 @@
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap gap-2">
             {% if ptype != blank %}
-              <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">{{ ptype | escape }}</span>
+              <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">{{ ptype | escape_once }}</span>
             {% endif %}
             {% assign tier_raw = page.settings.partner_tier %}
             {% assign tier_v = tier_raw.value | default: tier_raw %}
             {% if tier_v != blank %}
-              <span class="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-700">{{ tier_v | escape }}</span>
+              <span class="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-700">{{ tier_v | escape_once }}</span>
             {% endif %}
           </div>
           <h1 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{{ display_title }}</h1>
@@ -45,7 +56,7 @@
       <div class="flex w-full shrink-0 flex-col gap-2 sm:flex-row lg:w-auto lg:flex-col">
         {% if act != blank %}
           <a href="{{ act }}" class="btn btn-primary btn-lg w-full sm:w-auto" {% if act contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}>
-            {% if al != blank %}{{ al }}{% elsif ptype == type_integration_key %}{{ 'partners.install_app' | t }}{% else %}{{ 'partners.contact_partner' | t }}{% endif %}
+            {% if al != blank %}{{ al }}{% elsif ptype == type_integration_key or ptype_raw.value == 'integration' or ptype_raw == 'integration' %}{{ 'partners.install_app' | t }}{% else %}{{ 'partners.contact_partner' | t }}{% endif %}
           </a>
         {% endif %}
         {% if web != blank %}

@@ -5,26 +5,36 @@
 {% assign partner_region_menu = _reg_site | strip | newline_to_br | split: '<br />' %}
 {% assign _tier_site = site.settings.partner_tier.value | default: site.settings.partner_tier | default: '' %}
 {% assign partner_tier_menu = _tier_site | strip | newline_to_br | split: '<br />' %}
+{% assign type_integration_key = partner_type_menu[0] | strip %}
+{% assign type_agency_key = partner_type_menu[1] | strip %}
+{% assign region_na_key = partner_region_menu[0] | strip %}
+{% assign region_nordic_key = partner_region_menu[1] | strip %}
+{% assign region_apac_key = partner_region_menu[2] | strip %}
+{% assign tier_gold_key = partner_tier_menu[0] | strip %}
+{% assign tier_silver_key = partner_tier_menu[1] | strip %}
+{% if type_integration_key == blank or type_agency_key == blank %}
+  {% assign partner_type_menu = 'partners.type_integration' | t | append: '<br />' | append: ('partners.type_agency' | t) | split: '<br />' %}
+  {% assign type_integration_key = partner_type_menu[0] | strip %}
+  {% assign type_agency_key = partner_type_menu[1] | strip %}
+{% endif %}
+{% if region_na_key == blank or region_apac_key == blank %}
+  {% assign partner_region_menu = 'partners.region_na' | t | append: '<br />' | append: ('partners.region_nordic' | t) | append: '<br />' | append: ('partners.region_apac' | t) | split: '<br />' %}
+  {% assign region_na_key = partner_region_menu[0] | strip %}
+  {% assign region_nordic_key = partner_region_menu[1] | strip %}
+  {% assign region_apac_key = partner_region_menu[2] | strip %}
+{% endif %}
+{% if tier_gold_key == blank or tier_silver_key == blank %}
+  {% assign partner_tier_menu = 'partners.tier_gold' | t | append: '<br />' | append: ('partners.tier_silver' | t) | split: '<br />' %}
+  {% assign tier_gold_key = partner_tier_menu[0] | strip %}
+  {% assign tier_silver_key = partner_tier_menu[1] | strip %}
+{% endif %}
 {% assign items = page.children_in_list | order_by: sort_rule %}
 {% capture _ch_title %}{{ page.link_text }}{% endcapture %}
 {% set_meta_title _ch_title | strip %}
 
 <div
   class="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:flex-row lg:items-start lg:gap-10 lg:px-8"
-  x-data="{
-    partnerType: 'all',
-    region: 'all',
-    tier: 'all',
-    matches(el) {
-      const t = el.dataset.partnerType || '';
-      const r = el.dataset.region || '';
-      const v = el.dataset.tier || '';
-      const okType = this.partnerType === 'all' || t === this.partnerType;
-      const okReg = this.region === 'all' || r === this.region;
-      const okTier = this.tier === 'all' || v === this.tier;
-      return okType && okReg && okTier;
-    }
-  }"
+  id="js--partner-hub"
 >
   <aside class="w-full shrink-0 lg:sticky lg:top-24 lg:w-72">
     <nav class="mb-3 flex flex-wrap gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
@@ -42,17 +52,17 @@
       <div>
         <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_type' | t }}</p>
         <div class="flex flex-wrap gap-2">
-          <button type="button" class="btn btn-xs sm:btn-sm" :class="partnerType === 'all' ? 'btn-primary' : 'btn-ghost border border-slate-200'" @click="partnerType = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm btn-primary" data-filter="type" data-value="all">{{ 'partners.filter_all' | t }}</button>
           {% for opt in partner_type_menu %}
             {% assign opt = opt | strip %}
             {% if opt != blank %}
               <button
                 type="button"
-                class="btn btn-xs sm:btn-sm"
-                :class='partnerType === {{ opt | json }} ? "btn-primary" : "btn-ghost border border-slate-200"'
-                @click='partnerType = {{ opt | json }}'
+                class="btn btn-xs sm:btn-sm btn-ghost border border-slate-200"
+                data-filter="type"
+                data-value="{{ opt | escape_once }}"
               >
-                {{ opt | escape }}
+                {{ opt | escape_once }}
               </button>
             {% endif %}
           {% endfor %}
@@ -61,17 +71,17 @@
       <div>
         <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_region' | t }}</p>
         <div class="flex flex-wrap gap-2">
-          <button type="button" class="btn btn-xs sm:btn-sm" :class="region === 'all' ? 'btn-primary' : 'btn-ghost border border-slate-200'" @click="region = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm btn-primary" data-filter="region" data-value="all">{{ 'partners.filter_all' | t }}</button>
           {% for opt in partner_region_menu %}
             {% assign opt = opt | strip %}
             {% if opt != blank %}
               <button
                 type="button"
-                class="btn btn-xs sm:btn-sm"
-                :class='region === {{ opt | json }} ? "btn-primary" : "btn-ghost border border-slate-200"'
-                @click='region = {{ opt | json }}'
+                class="btn btn-xs sm:btn-sm btn-ghost border border-slate-200"
+                data-filter="region"
+                data-value="{{ opt | escape_once }}"
               >
-                {{ opt | escape }}
+                {{ opt | escape_once }}
               </button>
             {% endif %}
           {% endfor %}
@@ -80,17 +90,17 @@
       <div>
         <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{{ 'partners.filter_tier' | t }}</p>
         <div class="flex flex-wrap gap-2">
-          <button type="button" class="btn btn-xs sm:btn-sm" :class="tier === 'all' ? 'btn-primary' : 'btn-ghost border border-slate-200'" @click="tier = 'all'">{{ 'partners.filter_all' | t }}</button>
+          <button type="button" class="btn btn-xs sm:btn-sm btn-primary" data-filter="tier" data-value="all">{{ 'partners.filter_all' | t }}</button>
           {% for opt in partner_tier_menu %}
             {% assign opt = opt | strip %}
             {% if opt != blank %}
               <button
                 type="button"
-                class="btn btn-xs sm:btn-sm"
-                :class='tier === {{ opt | json }} ? "btn-primary" : "btn-ghost border border-slate-200"'
-                @click='tier = {{ opt | json }}'
+                class="btn btn-xs sm:btn-sm btn-ghost border border-slate-200"
+                data-filter="tier"
+                data-value="{{ opt | escape_once }}"
               >
-                {{ opt | escape }}
+                {{ opt | escape_once }}
               </button>
             {% endif %}
           {% endfor %}
@@ -100,7 +110,7 @@
   </aside>
 
   <div class="min-w-0 flex-1">
-    <div x-ref="grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <div id="js--partner-grid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {% for p in items %}
         {% if p.template_name == 'page' %}
           {% assign ptype_raw = p.settings.partner_type %}
@@ -109,13 +119,29 @@
           {% assign reg = reg_raw.value | default: reg_raw | default: '' %}
           {% assign tier_raw = p.settings.partner_tier %}
           {% assign tier_v = tier_raw.value | default: tier_raw | default: '' %}
+          {% if type_integration_key != blank and ptype == 'integration' %}
+            {% assign ptype = type_integration_key %}
+          {% elsif type_agency_key != blank and ptype == 'agency' %}
+            {% assign ptype = type_agency_key %}
+          {% endif %}
+          {% if region_na_key != blank and reg == 'na' %}
+            {% assign reg = region_na_key %}
+          {% elsif region_nordic_key != blank and reg == 'nordic' %}
+            {% assign reg = region_nordic_key %}
+          {% elsif region_apac_key != blank and reg == 'apac' %}
+            {% assign reg = region_apac_key %}
+          {% endif %}
+          {% if tier_gold_key != blank and tier_v == 'gold' %}
+            {% assign tier_v = tier_gold_key %}
+          {% elsif tier_silver_key != blank and tier_v == 'silver' %}
+            {% assign tier_v = tier_silver_key %}
+          {% endif %}
           <article
             data-partner-card
             data-partner-type="{{ ptype }}"
             data-region="{{ reg }}"
             data-tier="{{ tier_v }}"
             class="partners-glass-card flex flex-col p-5 transition hover:border-primary/40"
-            x-show="matches($el)"
           >
             <div class="flex items-start gap-3">
               {% assign logo_u = p.settings.logo_image_url | presence %}
@@ -127,10 +153,10 @@
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap gap-1.5">
                   {% if ptype != blank %}
-                    <span class="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">{{ ptype | escape }}</span>
+                    <span class="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold text-primary">{{ ptype | escape_once }}</span>
                   {% endif %}
                   {% if tier_v != blank %}
-                    <span class="rounded bg-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700">{{ tier_v | escape }}</span>
+                    <span class="rounded bg-slate-200 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700">{{ tier_v | escape_once }}</span>
                   {% endif %}
                 </div>
                 <h2 class="mt-2 truncate text-base font-semibold text-slate-900">
@@ -148,9 +174,77 @@
         {% endif %}
       {% endfor %}
     </div>
-    <p class="mt-6 text-center text-sm text-slate-500" x-show="Array.from($refs.grid.querySelectorAll('[data-partner-card]')).every((el) => !matches(el))">{{ 'partners.no_match' | t }}</p>
+    <p id="js--no-match" class="mt-6 hidden text-center text-sm text-slate-500">{{ 'partners.no_match' | t }}</p>
   </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.getElementById('js--partner-hub');
+    if (!root) return;
+    var grid = document.getElementById('js--partner-grid');
+    if (!grid) return;
+    var noMatch = document.getElementById('js--no-match');
+    var state = { type: 'all', region: 'all', tier: 'all' };
+
+    function setActive(filter, value) {
+      var btns = root.querySelectorAll('button[data-filter=\"' + filter + '\"]');
+      for (var i = 0; i < btns.length; i++) {
+        var b = btns[i];
+        var isOn = (b.getAttribute('data-value') || '') === value;
+        if (isOn) {
+          b.classList.add('btn-primary');
+          b.classList.remove('btn-ghost');
+          b.classList.remove('border');
+          b.classList.remove('border-slate-200');
+        } else {
+          b.classList.remove('btn-primary');
+          b.classList.add('btn-ghost');
+          b.classList.add('border');
+          b.classList.add('border-slate-200');
+        }
+      }
+    }
+
+    function render() {
+      var cards = grid.querySelectorAll('[data-partner-card]');
+      var any = false;
+      for (var i = 0; i < cards.length; i++) {
+        var el = cards[i];
+        var t = el.getAttribute('data-partner-type') || '';
+        var r = el.getAttribute('data-region') || '';
+        var v = el.getAttribute('data-tier') || '';
+        var ok =
+          (state.type === 'all' || t === state.type) &&
+          (state.region === 'all' || r === state.region) &&
+          (state.tier === 'all' || v === state.tier);
+        el.style.display = ok ? '' : 'none';
+        if (ok) any = true;
+      }
+      if (noMatch) noMatch.classList.toggle('hidden', any);
+    }
+
+    root.addEventListener('click', function (e) {
+      var target = e.target;
+      if (!target) return;
+      var btn = target.closest ? target.closest('button[data-filter][data-value]') : null;
+      if (!btn) return;
+      var filter = btn.getAttribute('data-filter');
+      var value = btn.getAttribute('data-value');
+      if (!filter || value == null) return;
+      if (filter === 'type') state.type = value;
+      if (filter === 'region') state.region = value;
+      if (filter === 'tier') state.tier = value;
+      setActive(filter, value);
+      render();
+    });
+
+    setActive('type', state.type);
+    setActive('region', state.region);
+    setActive('tier', state.tier);
+    render();
+  })();
+</script>
 
 {% schema %}
   {
