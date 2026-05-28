@@ -1,123 +1,296 @@
-{% assign _dash_meta = 'partners.dashboard.meta_title' | t | strip %}
-{% set_meta_title _dash_meta %}
-{% assign hub = site.pages['/partner-hub'] %}
-{% assign become_path = statics['become-a-partner'] %}
-{% assign dash_img = 'images/dashboard.jpg' | asset_url %}
+{% assign insights_url = statics['recent'] | default: '#' %}
+{% assign resources_url = statics['resources'] | default: '#' %}
+{% assign ecosystem_url = site.index_path | default: '/' %}
 
-<div class="relative z-10 mx-auto w-full max-w-6xl px-4 pb-20 pt-8 sm:px-6 lg:px-8">
-  <section aria-labelledby="dashboard-hero-heading" class="border-b border-slate-200/80 pb-12 lg:pb-16">
-    <div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-      <div class="min-w-0 max-w-2xl">
-        <h1 id="dashboard-hero-heading" class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
-          {{ 'partners.dashboard.hero_title' | t }}<span class="text-primary">{{ 'partners.dashboard.hero_title_accent' | t }}</span>
-        </h1>
-        <p class="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{{ 'partners.dashboard.hero_subtitle' | t }}</p>
-        <div class="mt-5 h-1.5 w-16 shrink-0 rounded-full bg-primary" aria-hidden="true"></div>
+<div class="container relative isolate pb-16 pt-8">
+
+  <section
+    class="partners-glass-card relative overflow-hidden p-6 sm:p-8"
+    style="background-image: linear-gradient(120deg, hsl(var(--theme-color-primary, 173 77% 26%) / 0.06), hsl(var(--theme-color-secondary, 23 83% 42%) / 0.06)), url('{{ 'bg.svg' | asset_url }}'); background-size: cover; background-position: center;"
+  >
+    <div class="absolute inset-0 bg-base-100/65" aria-hidden="true"></div>
+    <div class="relative z-10">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wider text-primary">Partners Portal</p>
+        <h1 class="mt-2 text-3xl font-bold tracking-tight text-base-content sm:text-4xl">Welcome, Sabina</h1>
+        <p class="mt-2 text-sm text-base-content/70 sm:text-base">Your ecosystem overview and AI-powered insights are ready.</p>
       </div>
-      <div class="flex shrink-0 lg:pt-1">
-        {% if hub %}
-          <a
-            href="{{ hub.path }}"
-            class="btn btn-outline btn-sm border-slate-300 text-xs font-semibold uppercase tracking-wide text-slate-700 hover:border-primary hover:bg-primary/5 sm:btn-md sm:text-[0.65rem]"
-            data-turbo-frame="main-content-frame"
-            data-turbo-action="advance"
-          >
-            {{ 'partners.dashboard.cta_hub' | t }}
-          </a>
-        {% endif %}
-      </div>
+      <nav class="tabs tabs-boxed bg-base-200/70 p-1">
+        <a class="tab tab-active" href="{{ statics['dashboard'] | default: '#' }}">Dashboard</a>
+        <a class="tab" href="{{ resources_url }}">Resources</a>
+        <a class="tab" href="{{ ecosystem_url }}">Ecosystem</a>
+      </nav>
     </div>
-
-    <div class="mt-10 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_8px_40px_rgb(15,23,42,0.08)] ring-1 ring-slate-200/60">
-      <img
-        src="{{ dash_img }}"
-        class="w-full object-cover object-top"
-        alt="{{ 'partners.dashboard.demo_alt' | t }}"
-        loading="eager"
-        decoding="async"
-      />
+    {% form_tag 'search' %}
+      <div class="mt-6 flex items-center gap-2">
+        <label class="input input-bordered flex h-12 flex-1 items-center gap-3 rounded-full border-base-300 bg-base-100/90 px-4 shadow-sm">
+          <i data-lucide="search" class="h-4 w-4 text-base-content/60"></i>
+          <input
+            id="dashboard-ai-search"
+            type="text"
+            name="{{ form.keywords_field_name }}"
+            value="{{ search.keywords | escape_once }}"
+            class="grow bg-transparent"
+            placeholder="Ask AI anything about your partners..."
+          />
+          <kbd class="hidden rounded-md border border-base-300 bg-base-200 px-2 py-0.5 text-xs text-base-content/60 sm:inline-flex">⌘ K</kbd>
+        </label>
+        <button type="submit" class="btn btn-primary btn-sm rounded-full px-4">
+          <i data-lucide="search" class="h-4 w-4"></i>
+        </button>
+      </div>
+    {% endform_tag %}
     </div>
   </section>
 
-  <section class="mt-14 sm:mt-16" aria-labelledby="dashboard-features-heading">
-    <h2 id="dashboard-features-heading" class="sr-only">{{ 'partners.dashboard.features_heading' | t }}</h2>
-    <div class="grid gap-6 sm:grid-cols-2 lg:gap-8">
-      <article id="feature-directory" class="partners-glass-card flex flex-col p-6 sm:p-7">
-        <div class="flex gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 text-primary">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path d="M4 6h16M4 10h16M4 14h10M4 18h10" stroke-linecap="round" />
-              <circle cx="17" cy="16" r="2" fill="currentColor" stroke="none" />
-            </svg>
+  <main class="mt-6 gap-6">
+    <div class="space-y-6">
+      <section class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ insights_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="newspaper" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
           </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-lg font-bold text-slate-900">{{ 'partners.dashboard.card_directory_title' | t }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ 'partners.dashboard.card_directory_desc' | t }}</p>
-          </div>
-        </div>
-        {% if hub %}
-          <a href="{{ hub.path }}" class="link link-primary mt-5 inline-flex items-center gap-0.5 text-sm font-medium no-underline hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">
-            {{ 'partners.dashboard.card_more' | t }}<span aria-hidden="true">&gt;</span>
-          </a>
-        {% else %}
-          <a href="{{ site.index_path }}" class="link link-primary mt-5 inline-flex items-center gap-0.5 text-sm font-medium no-underline hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">
-            {{ 'partners.dashboard.card_more' | t }}<span aria-hidden="true">&gt;</span>
-          </a>
-        {% endif %}
-      </article>
-
-      <article id="feature-training" class="partners-glass-card flex flex-col p-6 sm:p-7">
-        <div class="flex gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 text-primary">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path d="M12 14l9-5-9-5-9 5 9 5z" stroke-linejoin="round" />
-              <path d="M12 14l6.16-3.42M12 14v7" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-lg font-bold text-slate-900">{{ 'partners.dashboard.card_training_title' | t }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ 'partners.dashboard.card_training_desc' | t }}</p>
-          </div>
-        </div>
-        <a href="{{ become_path }}" class="link link-primary mt-5 inline-flex items-center gap-0.5 text-sm font-medium no-underline hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">
-          {{ 'partners.dashboard.card_more' | t }}<span aria-hidden="true">&gt;</span>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">News</p>
         </a>
-      </article>
 
-      <article id="feature-resources" class="partners-glass-card flex flex-col p-6 sm:p-7">
-        <div class="flex gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 text-primary">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke-linejoin="round" />
-              <path d="M14 2v6h6M12 18v-6M9 15h6" stroke-linecap="round" />
-            </svg>
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ resources_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="file-text" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
           </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-lg font-bold text-slate-900">{{ 'partners.dashboard.card_resources_title' | t }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ 'partners.dashboard.card_resources_desc' | t }}</p>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Docs</p>
+        </a>
+
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ insights_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="calendar-days" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
+          </div>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Events</p>
+        </a>
+
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ resources_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="package" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
+          </div>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Products</p>
+        </a>
+
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ resources_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="badge-check" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
+          </div>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Cases</p>
+        </a>
+
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ resources_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="wrench" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
+          </div>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Tools</p>
+        </a>
+
+        <a class="group relative overflow-hidden rounded-2xl border border-base-300/70 bg-gradient-to-br from-base-100 via-base-100 to-primary/5 p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_10px_30px_rgb(15,23,42,0.12)]" href="{{ resources_url }}">
+          <div class="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-primary/10 blur-xl" aria-hidden="true"></div>
+          <div class="relative flex items-center justify-between">
+            <span class="inline-flex rounded-xl bg-primary/12 p-2 text-primary ring-1 ring-primary/20"><i data-lucide="graduation-cap" class="h-4 w-4"></i></span>
+            <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 text-base-content/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"></i>
+          </div>
+          <p class="relative mt-3 text-xs font-semibold tracking-wide text-base-content/85">Learning</p>
+        </a>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-12">
+        <div class="space-y-6 lg:col-span-8">
+          <section class="partners-glass-card p-5 sm:p-6">
+            <div class="flex items-center justify-between">
+              <h2 class="text-xl font-semibold text-base-content">How To?</h2>
+              <a href="{{ resources_url }}" class="text-sm font-medium text-primary hover:underline">View Guides</a>
+            </div>
+            <div class="mt-4 grid gap-2 sm:grid-cols-3">
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Reset Okta credentials?</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Request Summer Camp ID Card</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Set up mail forwarding</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Request lock up an EID?</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Request a new account?</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Microsoft outlook issues</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Report a software issue?</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Set up a home network router?</a>
+              <a href="{{ resources_url }}" class="rounded-xl border border-base-300 bg-base-100 px-3 py-2 text-xs text-base-content/80 transition-colors hover:border-primary/40 hover:bg-primary/5">Set up a home broadband router?</a>
+            </div>
+
+            <div class="mt-6 border-t border-base-300/80 pt-5">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-base-content">Popular Articles</h2>
+                <a href="{{ resources_url }}" class="btn btn-ghost btn-sm text-primary">View All</a>
+              </div>
+              <div class="mt-3 grid gap-3 sm:grid-cols-3">
+                <article class="overflow-hidden rounded-xl border border-base-300 bg-base-100">
+                  <img class="h-24 w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-d8v1qwvTK7UVCuT5rERdF2mVgdSZpEQGsJj2VddRP9LMyfBCFJkkXsAUCdY5cQWcbQv36C1CZx9jMb8U502dmd3fzcY2rV4x-6BlYdZZXV3mESGEmUoiCz0Xh-TyCMqZW-jY9cl2122USbDMtdld2RcFMnwosWeBEHdEOklq27nbiEvZOCi5teJcxUQ31H3bI_n7v2Jyh7oQw7WXtGykJDUIPcWuJu4QymesbGOkTaoEBGtVSM4qK_GGVJHd9Svy-5tpv_HMj8E" alt="Impact report" />
+                  <div class="p-3">
+                    <h3 class="line-clamp-1 text-sm font-semibold text-base-content">Partner impact report</h3>
+                    <div class="mt-2 flex items-center justify-between text-xs text-base-content/55">
+                      <span>Peter Mark</span>
+                      <span>5 days ago</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="overflow-hidden rounded-xl border border-base-300 bg-base-100">
+                  <img class="h-24 w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCvBkaw-k1g5q16D-8Lyg63sSPOh6kikpEJdMIv31TwTDcIMsDE4imZwq819BnUqSN10RcXzmPZwObVTFANVxsIUGXIC2K_HFyOL3usrN7GsoSIm7DDSyPsGXvAXLvZLMVn51sYNKrs66JRIKSehmE7pNf2KGdEBe5PFxIr3ILe-EloAN_zfyDBkVC4ltaJ_hx9gq7QC__bsj8f-TZZt0kH5KPfmmk0XHYX47XnWZ3ylb9y8Mg_otZVsmv30-XwaqbHaW2YbOk57Q" alt="Calendar launch" />
+                  <div class="p-3">
+                    <h3 class="line-clamp-1 text-sm font-semibold text-base-content">Zen campaign calendar</h3>
+                    <div class="mt-2 flex items-center justify-between text-xs text-base-content/55">
+                      <span>Shaun Shanks</span>
+                      <span>5 days ago</span>
+                    </div>
+                  </div>
+                </article>
+                <article class="overflow-hidden rounded-xl border border-base-300 bg-base-100">
+                  <img class="h-24 w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoSR5DnYyplH_fEp_QMAxIAwztQp27bg-7Nrk9yw9gWdxy7JoTYrK13KB0pGaiKte44FzRjwhn-BFUUOPqSgsI5-OnpXz3VGSBr3BGX6gmANZMYeH-gWRFiDtBGPqh1ARc1tDDEi1Dl79QAuQxxXARCOLRowXJlErdEjHju2fLhqg_JfP5ky1MepVaYZbELZ23omuT_EsutFNnhYTlmFWl_mVGeIkSnhPgvNoAfSexkYeoe9Wz88vJYKeDl2iJLNUGcbLJ5sodTEM" alt="Product launch" />
+                  <div class="p-3">
+                    <h3 class="line-clamp-1 text-sm font-semibold text-base-content">Ground breaking launch kit</h3>
+                    <div class="mt-2 flex items-center justify-between text-xs text-base-content/55">
+                      <span>Jack Luffy</span>
+                      <span>5 days ago</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid gap-4 sm:grid-cols-2">
+            <article class="partners-glass-card p-5">
+              <h3 class="text-xl font-semibold text-base-content">Forms and Templates</h3>
+              <p class="mt-1 text-xs text-base-content/60">Discover and download commonly used partner assets.</p>
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <a href="{{ resources_url }}" class="rounded-lg bg-neutral px-3 py-2 text-xs font-medium text-neutral-content transition-opacity hover:opacity-85">Job Description</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-primary px-3 py-2 text-xs font-medium text-primary-content transition-opacity hover:opacity-85">Onboarding</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-accent px-3 py-2 text-xs font-medium text-accent-content transition-opacity hover:opacity-85">Payroll</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-success px-3 py-2 text-xs font-medium text-success-content transition-opacity hover:opacity-85">Performance Review</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-warning px-3 py-2 text-xs font-medium text-warning-content transition-opacity hover:opacity-85">Benefits</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-base-300 px-3 py-2 text-xs font-medium text-base-content transition-opacity hover:opacity-85">Privacy</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-info px-3 py-2 text-xs font-medium text-info-content transition-opacity hover:opacity-85">Safety</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-secondary px-3 py-2 text-xs font-medium text-secondary-content transition-opacity hover:opacity-85">SOPs</a>
+              </div>
+            </article>
+
+            <article class="partners-glass-card p-5">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-semibold text-base-content">Documents</h3>
+                <i data-lucide="folder-open" class="h-4 w-4 text-base-content/60"></i>
+              </div>
+              <label class="input input-bordered mt-3 h-10 border-base-300 bg-base-100">
+                <i data-lucide="search" class="h-4 w-4 text-base-content/50"></i>
+                <input type="text" class="grow" placeholder="Search onboarding forms" />
+              </label>
+              <div class="mt-3 grid grid-cols-2 gap-2">
+                <a href="{{ resources_url }}" class="rounded-lg bg-primary/80 px-3 py-3 text-xs font-medium text-primary-content transition-colors hover:bg-primary">Compliance</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-info px-3 py-3 text-xs font-medium text-info-content transition-colors hover:bg-info/80">Job Descriptions</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-secondary px-3 py-3 text-xs font-medium text-secondary-content transition-colors hover:bg-secondary/80">Legal</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-accent px-3 py-3 text-xs font-medium text-accent-content transition-colors hover:bg-accent/80">Performance</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-neutral px-3 py-3 text-xs font-medium text-neutral-content transition-colors hover:bg-neutral/80">Training</a>
+                <a href="{{ resources_url }}" class="rounded-lg bg-success px-3 py-3 text-xs font-medium text-success-content transition-colors hover:bg-success/80">Welcome Package</a>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <div class="space-y-4 lg:col-span-4">
+          <aside class="partners-glass-card sticky top-[calc(var(--header-height)+1rem)] flex h-[min(70vh,42rem)] flex-col overflow-hidden p-0">
+            <header class="flex items-center justify-between border-b border-base-300/80 px-4 py-3">
+              <div class="flex items-center gap-2">
+                <span class="inline-block h-2 w-2 rounded-full bg-success"></span>
+                <h2 class="text-sm font-semibold text-base-content">AI Assistant</h2>
+              </div>
+              <button class="btn btn-ghost btn-xs text-base-content/70"><i data-lucide="ellipsis" class="h-4 w-4"></i></button>
+            </header>
+
+            <div class="no-scrollbar flex-1 space-y-4 overflow-y-auto p-4 text-sm">
+              <div class="max-w-[85%] space-y-1">
+                <div class="rounded-2xl rounded-tl-sm border border-base-300 bg-base-200 px-3 py-2 text-base-content">Hi Sabina! I've analyzed the new partner data. Would you like to see growth projections for Q4?</div>
+                <span class="pl-1 text-xs text-base-content/50">10:42 AM</span>
+              </div>
+
+              <div class="ml-auto max-w-[85%] space-y-1 text-right">
+                <div class="rounded-2xl rounded-tr-sm bg-primary px-3 py-2 text-primary-content">Yes, please. Also show the latest MDF requests from EMEA.</div>
+                <span class="pr-1 text-xs text-base-content/50">10:45 AM</span>
+              </div>
+
+              <div class="max-w-[85%] rounded-2xl rounded-tl-sm border border-base-300 bg-base-200 px-3 py-2 text-base-content">
+                <p>Generating report...</p>
+                <div class="mt-2 flex items-center gap-1 text-base-content/60">
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary/70"></span>
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary/50"></span>
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary/35"></span>
+                </div>
+              </div>
+            </div>
+
+            <footer class="border-t border-base-300/80 p-4">
+              <label class="input input-bordered flex items-center gap-2 border-base-300 bg-base-100">
+                <input type="text" class="grow" placeholder="Type a message..." />
+                <button class="btn btn-ghost btn-xs px-1 text-primary"><i data-lucide="send" class="h-4 w-4"></i></button>
+              </label>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <button class="btn btn-xs btn-soft">Show Analytics</button>
+                <button class="btn btn-xs btn-soft">Open Tasks</button>
+              </div>
+            </footer>
+          </aside>
+        </div>
+      </section>
+
+      <section class="partners-glass-card flex flex-col items-center gap-4 p-6 sm:flex-row sm:justify-between">
+        <div class="flex items-center gap-3">
+          <div class="avatar-group -space-x-3">
+            <div class="avatar">
+              <div class="h-12 w-12">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoSR5DnYyplH_fEp_QMAxIAwztQp27bg-7Nrk9yw9gWdxy7JoTYrK13KB0pGaiKte44FzRjwhn-BFUUOPqSgsI5-OnpXz3VGSBr3BGX6gmANZMYeH-gWRFiDtBGPqh1ARc1tDDEi1Dl79QAuQxxXARCOLRowXJlErdEjHju2fLhqg_JfP5ky1MepVaYZbELZ23omuT_EsutFNnhYTlmFWl_mVGeIkSnhPgvNoAfSexkYeoe9Wz88vJYKeDl2iJLNUGcbLJ5sodTEM" alt="Top performer 1" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="h-12 w-12">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA07rQe2bWGydTd5GZYJ9IQew7xxUSWOPfZXBejjrtnrLl8VvicYoS0gbBbeTnZJuNrhRLIdMP7F-kBCgLAzKmgR2fjm9vp_O0EW45lXA5xfpReOxRgnyYmTbZI1tqSaNQgncxZhQCqtHQdr1i2W7lNH0RgDemg5WumWmcJXR6Z94_a9zDOYdqZd4aUBlFru1EYuOfFExFc_tBIgytXqLmMMa8GSbZlahjmef6oPq9GczYHhw6Gh81fk4SvAJ6j19ZBvT3B26zsrlE" alt="Top performer 2" />
+              </div>
+            </div>
+            <div class="avatar">
+              <div class="h-12 w-12">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN36LuVLJACREn0tbSA7sNSlhi3Ko8pemIInFV3QlHSRMdGAy3HDRNPh8vSUtu6Ll8cPdWVFETvVflu2xA5oykos5q15lTV0mLv57GSvb-ViEd8u3naHq0ph8IC9VulRhjZ_4jAc-kz48KTk3O0cTXum7-aMyLyJQLiZnE2c18bFUAYzKxF8yao9WvuliPdf3x3W3VEjFn1BH6JHa82OwVYvg0PlGRlqkPxYF_ywm4hA6w1OlS2rJ0DmfPvGLQmicaw2J0AAUYr44" alt="Top performer 3" />
+              </div>
+            </div>
+            <div class="avatar placeholder">
+              <div class="h-12 w-12 bg-primary text-primary-content"><span class="text-xs">+12</span></div>
+            </div>
+          </div>
+          <div>
+            <h2 class="text-xl font-semibold text-base-content">Recognition Wall</h2>
+            <p class="text-sm text-base-content/70">Celebrate the achievements of top performers. AI signals a 15% increase in community engagement.</p>
           </div>
         </div>
-        <a href="{{ become_path }}" class="link link-primary mt-5 inline-flex items-center gap-0.5 text-sm font-medium no-underline hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">
-          {{ 'partners.dashboard.card_more' | t }}<span aria-hidden="true">&gt;</span>
-        </a>
-      </article>
-
-      <article id="feature-mdf" class="partners-glass-card flex flex-col p-6 sm:p-7">
-        <div class="flex gap-4">
-          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 text-primary">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="text-lg font-bold text-slate-900">{{ 'partners.dashboard.card_mdf_title' | t }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">{{ 'partners.dashboard.card_mdf_desc' | t }}</p>
-          </div>
-        </div>
-        <a href="{{ become_path }}" class="link link-primary mt-5 inline-flex items-center gap-0.5 text-sm font-medium no-underline hover:underline" data-turbo-frame="main-content-frame" data-turbo-action="advance">
-          {{ 'partners.dashboard.card_more' | t }}<span aria-hidden="true">&gt;</span>
-        </a>
-      </article>
+        <button class="btn btn-outline border-primary text-primary hover:bg-primary hover:text-primary-content">Nominate Peer</button>
+      </section>
     </div>
-  </section>
+  </main>
 </div>
+
+<script>
+  document.addEventListener("keydown", (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      const searchInput = document.getElementById("dashboard-ai-search");
+      if (searchInput) searchInput.focus();
+    }
+  });
+</script>

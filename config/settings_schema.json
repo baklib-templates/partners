@@ -25,6 +25,17 @@
     ],
     "recommendations": {
       "color_schemas": {
+        "baklib": {
+          "name": "品牌默认",
+          "colors": {
+            "--theme-color-primary": "#0f766e",
+            "--theme-color-secondary": "#c2410c",
+            "--theme-color-accent": "#0f172a",
+            "--theme-color-info": "#38bdf8",
+            "--theme-color-success": "#14b8a6",
+            "--theme-color-warning": "#fdba74"
+          }
+        },
         "ecosystem": {
           "name": "生态深空",
           "colors": {

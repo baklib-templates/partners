@@ -1,0 +1,58 @@
+<style data-theme-runtime-colors>
+  :root,
+  [data-theme="light"],
+  input.theme-controller[value="light"]:checked {
+    --header-height: 64px;
+
+    --color-base-100: hsl(var(--theme-color-base-100, 36 20% 97%));
+    --color-base-200: hsl(var(--theme-color-base-200, 36 16% 93%));
+    --color-base-300: hsl(var(--theme-color-base-300, 36 12% 86%));
+    --color-base-content: hsl(var(--theme-color-base-content, 218 28% 14%));
+
+    --color-primary: hsl(var(--theme-color-primary, 173 77% 26%));
+    --color-primary-content: hsl(var(--theme-color-primary-content, 0 0% 98%));
+    --color-secondary: hsl(var(--theme-color-secondary, 23 83% 42%));
+    --color-secondary-content: hsl(var(--theme-color-secondary-content, 0 0% 100%));
+    --color-accent: hsl(var(--theme-color-accent, 217 33% 17%));
+    --color-accent-content: hsl(var(--theme-color-accent-content, 210 20% 98%));
+    --color-neutral: hsl(var(--theme-color-neutral, 222 47% 11%));
+    --color-neutral-content: hsl(var(--theme-color-neutral-content, 210 20% 98%));
+
+    --color-info: hsl(var(--theme-color-info, 199 89% 48%));
+    --color-info-content: hsl(var(--theme-color-info-content, 221 39% 11%));
+    --color-success: hsl(var(--theme-color-success, 160 84% 39%));
+    --color-success-content: hsl(var(--theme-color-success-content, 0 0% 100%));
+    --color-warning: hsl(var(--theme-color-warning, 35 92% 50%));
+    --color-warning-content: hsl(var(--theme-color-warning-content, 222 47% 11%));
+    --color-error: hsl(var(--theme-color-error, 0 72% 51%));
+    --color-error-content: hsl(var(--theme-color-error-content, 0 0% 100%));
+  }
+
+  [data-theme="dark"],
+  [data-theme="dark"] *,
+  input.theme-controller[value="dark"]:checked,
+  input.theme-controller[value="dark"]:checked ~ * {
+    --color-base-100: hsl(var(--theme-color-dark-base-100, 222 47% 11%));
+    --color-base-200: hsl(var(--theme-color-dark-base-200, 217 33% 17%));
+    --color-base-300: hsl(var(--theme-color-dark-base-300, 215 20% 30%));
+    --color-base-content: hsl(var(--theme-color-dark-base-content, 210 20% 96%));
+
+    --color-primary: hsl(var(--theme-color-dark-primary, var(--theme-color-primary, 173 77% 38%)));
+    --color-primary-content: hsl(var(--theme-color-dark-primary-content, 210 20% 98%));
+    --color-secondary: hsl(var(--theme-color-dark-secondary, var(--theme-color-secondary, 23 83% 52%)));
+    --color-secondary-content: hsl(var(--theme-color-dark-secondary-content, 222 47% 11%));
+    --color-accent: hsl(var(--theme-color-dark-accent, var(--theme-color-accent, 212 29% 84%)));
+    --color-accent-content: hsl(var(--theme-color-dark-accent-content, 222 47% 11%));
+    --color-neutral: hsl(var(--theme-color-dark-neutral, 217 33% 17%));
+    --color-neutral-content: hsl(var(--theme-color-dark-neutral-content, 210 20% 96%));
+
+    --color-info: hsl(var(--theme-color-dark-info, var(--theme-color-info, 199 89% 62%)));
+    --color-info-content: hsl(var(--theme-color-dark-info-content, 222 47% 11%));
+    --color-success: hsl(var(--theme-color-dark-success, var(--theme-color-success, 160 84% 45%)));
+    --color-success-content: hsl(var(--theme-color-dark-success-content, 222 47% 11%));
+    --color-warning: hsl(var(--theme-color-dark-warning, var(--theme-color-warning, 35 92% 58%)));
+    --color-warning-content: hsl(var(--theme-color-dark-warning-content, 222 47% 11%));
+    --color-error: hsl(var(--theme-color-dark-error, var(--theme-color-error, 0 72% 58%)));
+    --color-error-content: hsl(var(--theme-color-dark-error-content, 222 47% 11%));
+  }
+</style>

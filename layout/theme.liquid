@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html class="scroll-smooth partners-theme bg-slate-50" lang="{{ site.language }}">
+<html class="partners-theme scroll-smooth bg-base-200" lang="{{ site.language }}">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Baklib">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% meta_tags %}
+    {% render 'theme_runtime_colors' %}
     {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'baklib/shared/main.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
@@ -16,18 +17,18 @@
 
     {% weixin_share_tag app_id: site.settings.weixin_app_id, app_secret: site.settings.weixin_app_secret, debug: site.settings.weixin_debug, enabled: site.settings.weixin_enabled %}
   </head>
-  <body id="js--body" class="flex min-h-screen flex-col antialiased bg-slate-50 text-slate-900">
+  <body id="js--body" class="flex min-h-screen flex-col bg-base-200 text-base-content antialiased">
     <div class="flex-0">
       {% if site.settings.is_allow_header %}
         {% render 'header' %}
       {% endif %}
     </div>
 
-    <main class="relative flex min-h-0 flex-1 flex-col bg-gradient-to-b from-slate-50 via-white to-slate-100">
+    <main class="relative flex min-h-0 flex-1 flex-col bg-gradient-to-b from-base-200 via-base-100 to-base-200">
       {{ content_for_layout }}
     </main>
 
-    <div class="flex-0 border-t border-slate-200/80 bg-white/95 backdrop-blur-md">
+    <div class="flex-0 border-t border-base-300/80 bg-base-100/95 backdrop-blur-md">
       {% if site.settings.is_allow_footer %}
         {% render 'footer' %}
       {% endif %}

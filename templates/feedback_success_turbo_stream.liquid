@@ -2,7 +2,7 @@
 
 <turbo-stream action="remove" target="js--feedback-modal"></turbo-stream>
 
-{% # 更新feedback按钮 %}
+{% # Update feedback button %}
 <turbo-stream action="replace" target="js--feedback-{{ page.id }}">
   <template>
     {% render 'feedback_button', page: page %}

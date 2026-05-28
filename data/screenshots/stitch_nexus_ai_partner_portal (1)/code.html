@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PartnerIntel AI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001f26",
+                        "secondary-container": "#dae2fd",
+                        "tertiary": "#505f76",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface": "#f7f9fb",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#00687a",
+                        "on-primary-container": "#00424f",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#dae2fd",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "secondary": "#565e74",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary-container": "#5c647a",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#00687a",
+                        "outline-variant": "#bcc9cd",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#97a8c1",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-tertiary-container": "#2d3d52",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#acedff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "inverse-primary": "#4cd7f6",
+                        "primary-container": "#06b6d4",
+                        "on-surface-variant": "#3d494c",
+                        "primary-fixed-dim": "#4cd7f6",
+                        "outline": "#6d797d",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "container-max": "1280px",
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "stack-xs": "0.25rem",
+                        "stack-lg": "2rem",
+                        "margin-mobile": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Sidebar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-surface-container/80 backdrop-blur-md border-r border-outline-variant/30 shadow-2xl shadow-black/5 w-64 hidden md:flex">
+<div class="p-stack-lg">
+<h2 class="text-primary font-headline-md">AI Hub</h2>
+<p class="text-on-surface-variant font-label-sm text-label-sm">System Active</p>
+</div>
+<nav class="flex-1 px-stack-sm space-y-1">
+<a class="bg-primary-container/10 text-primary border-r-4 border-primary px-4 py-3 flex items-center gap-3 translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm">AI Concierge</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Activity Feed</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-label-sm text-label-sm">Partner Assets</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-label-sm text-label-sm">Case Studies</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm">Training</span>
+</a>
+</nav>
+<div class="p-stack-md border-t border-outline-variant/20">
+<button class="w-full bg-primary-container text-on-primary-container py-unit-sm rounded-lg font-label-md flex justify-center items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">query_stats</span>
+                Analyze Data
+            </button>
+<a class="mt-stack-md text-on-surface-variant px-4 py-2 flex items-center gap-3 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation (Shared Component) -->
+<header class="fixed top-0 right-0 left-0 md:left-64 z-30 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm shadow-primary/5 h-16 flex items-center px-margin-desktop justify-between">
+<div class="flex items-center gap-stack-lg">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary">PartnerIntel AI</div>
+<nav class="hidden lg:flex gap-stack-md">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Resources</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors duration-200" href="#">Ecosystem</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-stack-xs text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-stack-xs text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Partner Executive Profile" class="h-full w-full object-cover" data-alt="A professional business portrait of a female executive with a confident smile, wearing a modern gray blazer. The setting is a bright, high-end office with soft natural light and a clean, minimalist background. The visual style is crisp and corporate, aligning with a light-mode aesthetic using a palette of whites and soft grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq4TaxCysmi4dpMZrIwKzNb-jx7dqwFI1bMHEMLSZGrrPebn_0JzJ5d4F_Sxili4dIZ0sLJTpsKA1n2yH_3RAMWPGCWL1ds6z4hEkDm5UVYJNrZkwhstkPPS2skDo1spKC2ae_TCVh3Zs-FUAMRT10szxBA5Np23JEX87AGAWdcygZ--QTR55Jm2BMCh3W5rO9Y6JPXQmZc6Zse2mmgORhiJMcR-a1DTZasq27fR2_VvbDeQRYyDDcULIiHxOgDSkrP_GdoTeP3Uc"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-24 pb-12 md:pl-64 pr-0 min-h-screen flex flex-col lg:flex-row">
+<!-- Dashboard Canvas -->
+<div class="flex-1 px-margin-mobile md:px-margin-desktop space-y-stack-lg max-w-5xl mx-auto w-full">
+<!-- Hero Section -->
+<section class="relative rounded-xl overflow-hidden bg-gradient-to-br from-primary-container/20 via-background to-secondary-container/10 p-stack-lg border border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center gap-stack-md relative z-10">
+<div class="space-y-stack-xs text-center md:text-left">
+<h1 class="font-headline-xl text-headline-xl text-on-primary-container">Welcome, Sabina</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your ecosystem overview and AI-powered insights are ready.</p>
+</div>
+<div class="w-full max-w-md">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="w-full bg-white border border-outline-variant rounded-full py-4 pl-12 pr-6 font-body-md focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all shadow-sm group-hover:shadow-md" placeholder="Ask AI anything about your partners..." type="text"/>
+<kbd class="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 px-2 py-0.5 border border-outline-variant rounded text-label-sm text-on-surface-variant bg-surface-container-low">
+                                ⌘ K
+                            </kbd>
+</div>
+</div>
+</div>
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-container/5 rounded-full blur-3xl"></div>
+</section>
+<!-- Quick Navigation Grid -->
+<section class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-stack-sm">
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">newspaper</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">News</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">description</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Docs</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Events</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Products</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">fact_check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Cases</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">build</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tools</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant/30 flex flex-col items-center gap-2 hover:border-primary-container hover:shadow-sm transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container/10">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Learning</span>
+</div>
+</section>
+<!-- Main Bento Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<!-- Popular Articles & FAQ -->
+<div class="md:col-span-8 space-y-stack-lg">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Popular Articles</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-md">
+<div class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden hover:shadow-md transition-shadow">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Data Trends" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, professional 3D visualization of data trends and analytics charts in a bright, futuristic light-mode environment. The scene uses a palette of soft whites, pale grays, and vibrant cyan accents. The lighting is diffused and modern, creating a workspace feel that is both clinical and welcoming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-d8v1qwvTK7UVCuT5rERdF2mVgdSZpEQGsJj2VddRP9LMyfBCFJkkXsAUCdY5cQWcbQv36C1CZx9jMb8U502dmd3fzcY2rV4x-6BlYdZZXV3mESGEmUoiCz0Xh-TyCMqZW-jY9cl2122USbDMtdld2RcFMnwosWeBEHdEOklq27nbiEvZOCi5teJcxUQ31H3bI_n7v2Jyh7oQw7WXtGykJDUIPcWuJu4QymesbGOkTaoEBGtVSM4qK_GGVJHd9Svy-5tpv_HMj8E"/>
+<div class="absolute top-2 right-2 px-2 py-1 bg-primary-container text-white text-label-sm rounded">AI Suggested</div>
+</div>
+<div class="p-stack-md">
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1">Q4 Partner Strategy Guide</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Accelerate your growth with our latest ecosystem roadmap.</p>
+</div>
+</div>
+<div class="group bg-white rounded-xl border border-outline-variant/30 overflow-hidden hover:shadow-md transition-shadow">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Team Collaboration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-quality photo of professional collaborators working together in a minimalist, sun-drenched office. They are gathered around a sleek white table with thin-bezel laptops. The aesthetic is extremely clean and corporate, featuring a bright light-mode atmosphere with soft cyan highlights in the decor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCvBkaw-k1g5q16D-8Lyg63sSPOh6kikpEJdMIv31TwTDcIMsDE4imZwq819BnUqSN10RcXzmPZwObVTFANVxsIUGXIC2K_HFyOL3usrN7GsoSIm7DDSyPsGXvAXLvZLMVn51sYNKrs66JRIKSehmE7pNf2KGdEBe5PFxIr3ILe-EloAN_zfyDBkVC4ltaJ_hx9gq7QC__bsj8f-TZZt0kH5KPfmmk0XHYX47XnWZ3ylb9y8Mg_otZVsmv30-XwaqbHaW2YbOk57Q"/>
+</div>
+<div class="p-stack-md">
+<h4 class="font-label-md text-label-md text-on-surface line-clamp-1">Mastering Lead Generation</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Proven techniques for increasing your conversion rate by 20%.</p>
+</div>
+</div>
+</div>
+<!-- Forms & Templates -->
+<div class="space-y-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Forms &amp; Templates</h3>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-stack-sm">
+<div class="flex items-center gap-3 p-3 bg-white border border-outline-variant/30 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="font-body-sm text-body-sm flex-1 truncate">MDF Request Form</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white border border-outline-variant/30 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<span class="font-body-sm text-body-sm flex-1 truncate">Performance Review Template</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white border border-outline-variant/30 rounded-lg hover:border-primary-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="font-body-sm text-body-sm flex-1 truncate">Compliance Checklist</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">download</span>
+</div>
+</div>
+</div>
+</div>
+<!-- How To? & Docs Sidebar -->
+<div class="md:col-span-4 space-y-stack-lg">
+<div class="bg-surface-container-low border border-outline-variant/30 p-stack-md rounded-xl space-y-stack-md">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">How To?</h3>
+<div class="space-y-stack-xs">
+<button class="w-full text-left p-3 hover:bg-white rounded-lg transition-colors font-body-sm text-body-sm flex justify-between items-center group">
+                                How to register a new lead?
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full text-left p-3 hover:bg-white rounded-lg transition-colors font-body-sm text-body-sm flex justify-between items-center group">
+                                Setting up your API keys
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full text-left p-3 hover:bg-white rounded-lg transition-colors font-body-sm text-body-sm flex justify-between items-center group">
+                                Accessing training modules
+                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white border border-outline-variant/30 p-stack-md rounded-xl space-y-stack-md">
+<div class="flex justify-between items-center">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Documents</h3>
+<span class="material-symbols-outlined text-on-surface-variant">folder_open</span>
+</div>
+<ul class="space-y-stack-sm">
+<li class="flex items-center gap-2 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span class="font-body-sm text-body-sm">Global Partner Policy v2.4</span>
+</li>
+<li class="flex items-center gap-2 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span class="font-body-sm text-body-sm">Marketing Brand Assets</span>
+</li>
+<li class="flex items-center gap-2 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px]">article</span>
+<span class="font-body-sm text-body-sm">API Integration Guide</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Employee Recognition -->
+<section class="bg-gradient-to-r from-secondary-container/30 to-background border border-outline-variant/30 p-stack-lg rounded-xl flex flex-col md:flex-row items-center gap-stack-lg">
+<div class="flex -space-x-4">
+<img alt="Avatar 1" class="h-12 w-12 rounded-full border-2 border-white object-cover" data-alt="A close-up portrait of a male professional with a friendly expression. He is set against a clean, blurred office background with bright, natural lighting. The overall style is modern and high-key, maintaining the light-mode professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoSR5DnYyplH_fEp_QMAxIAwztQp27bg-7Nrk9yw9gWdxy7JoTYrK13KB0pGaiKte44FzRjwhn-BFUUOPqSgsI5-OnpXz3VGSBr3BGX6gmANZMYeH-gWRFiDtBGPqh1ARc1tDDEi1Dl79QAuQxxXARCOLRowXJlErdEjHju2fLhqg_JfP5ky1MepVaYZbELZ23omuT_EsutFNnhYTlmFWl_mVGeIkSnhPgvNoAfSexkYeoe9Wz88vJYKeDl2iJLNUGcbLJ5sodTEM"/>
+<img alt="Avatar 2" class="h-12 w-12 rounded-full border-2 border-white object-cover" data-alt="A portrait of a female professional with a warm smile, wearing a modern white blouse. The image is bright and airy, with soft shadows and a minimalist background, fitting perfectly into a corporate light-mode design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA07rQe2bWGydTd5GZYJ9IQew7xxUSWOPfZXBejjrtnrLl8VvicYoS0gbBbeTnZJuNrhRLIdMP7F-kBCgLAzKmgR2fjm9vp_O0EW45lXA5xfpReOxRgnyYmTbZI1tqSaNQgncxZhQCqtHQdr1i2W7lNH0RgDemg5WumWmcJXR6Z94_a9zDOYdqZd4aUBlFru1EYuOfFExFc_tBIgytXqLmMMa8GSbZlahjmef6oPq9GczYHhw6Gh81fk4SvAJ6j19ZBvT3B26zsrlE"/>
+<img alt="Avatar 3" class="h-12 w-12 rounded-full border-2 border-white object-cover" data-alt="A portrait of a male executive in a smart casual outfit, featuring a bright, well-lit setting. The background is clean and slightly out of focus, emphasizing technical clarity and a high-end corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN36LuVLJACREn0tbSA7sNSlhi3Ko8pemIInFV3QlHSRMdGAy3HDRNPh8vSUtu6Ll8cPdWVFETvVflu2xA5oykos5q15lTV0mLv57GSvb-ViEd8u3naHq0ph8IC9VulRhjZ_4jAc-kz48KTk3O0cTXum7-aMyLyJQLiZnE2c18bFUAYzKxF8yao9WvuliPdf3x3W3VEjFn1BH6JHa82OwVYvg0PlGRlqkPxYF_ywm4hA6w1OlS2rJ0DmfPvGLQmicaw2J0AAUYr44"/>
+<div class="h-12 w-12 rounded-full border-2 border-white bg-primary-container text-white flex items-center justify-center font-label-sm">+12</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recognition Wall</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Celebrate the achievements of our top performers this month. AI analysis shows a 15% increase in community engagement.</p>
+</div>
+<button class="bg-white border border-primary text-primary px-6 py-2 rounded-lg font-label-md hover:bg-primary/5 transition-colors">Nominate Peer</button>
+</section>
+</div>
+<!-- Right Sidebar (AI Assistant Chat) -->
+<aside class="w-full lg:w-80 bg-white border-l border-outline-variant/30 flex flex-col h-[calc(100vh-64px)] sticky top-16">
+<div class="p-stack-md border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<h3 class="font-label-md text-label-md text-on-surface">AI Assistant</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-stack-md space-y-stack-md hide-scrollbar">
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<div class="p-3 bg-surface-container-low rounded-tr-xl rounded-br-xl rounded-bl-xl border border-outline-variant/20">
+<p class="font-body-sm text-body-sm text-on-surface">Hi Sabina! I've analyzed the new partner data. Would you like to see the growth projections for Q4?</p>
+</div>
+<span class="text-[10px] text-on-surface-variant ml-1">10:42 AM</span>
+</div>
+<div class="flex flex-col gap-1 items-end ml-auto max-w-[85%]">
+<div class="p-3 bg-primary-container text-white rounded-tl-xl rounded-bl-xl rounded-br-xl shadow-sm">
+<p class="font-body-sm text-body-sm">Yes, please. Also, show me the latest MDF requests from EMEA.</p>
+</div>
+<span class="text-[10px] text-on-surface-variant mr-1">10:45 AM</span>
+</div>
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<div class="p-3 bg-surface-container-low rounded-tr-xl rounded-br-xl rounded-bl-xl border border-outline-variant/20">
+<div class="flex flex-col gap-2">
+<p class="font-body-sm text-body-sm text-on-surface">Generating report...</p>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2 animate-[progress_2s_ease-in-out_infinite]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-stack-md border-t border-outline-variant/20">
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-3 pl-4 pr-10 font-body-sm text-body-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Type a message..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<div class="mt-2 flex gap-1 overflow-x-auto hide-scrollbar">
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-high rounded-full text-[11px] font-label-sm text-on-surface-variant hover:bg-primary-container/10 transition-colors">Show Analytics</button>
+<button class="whitespace-nowrap px-3 py-1 bg-surface-container-high rounded-full text-[11px] font-label-sm text-on-surface-variant hover:bg-primary-container/10 transition-colors">Open Tasks</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="md:ml-64 bg-surface-container-lowest border-t border-outline-variant/20 w-full py-unit-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-unit-md">
+<div class="flex flex-col gap-1">
+<div class="font-headline-md text-primary">PartnerIntel AI</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Intelligence-as-a-Service. Engineered for Excellence.</p>
+</div>
+<div class="flex gap-stack-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security Portal</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">API Documentation</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Partner Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Legal</a>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the search bar focus
+        const searchInput = document.querySelector('input[type="text"]');
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        // Chat simulation loading effect animation style
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes progress {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(200%); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

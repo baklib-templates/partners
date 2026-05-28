@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Library - PartnerIntel AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f7f9fb",
+                        "on-primary-fixed": "#001f26",
+                        "secondary-container": "#dae2fd",
+                        "tertiary": "#505f76",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface": "#f7f9fb",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#00687a",
+                        "on-primary-container": "#00424f",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "secondary-fixed": "#dae2fd",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "secondary": "#565e74",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#d3e4fe",
+                        "on-secondary-container": "#5c647a",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#00687a",
+                        "outline-variant": "#bcc9cd",
+                        "surface-container-low": "#f2f4f6",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#97a8c1",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "on-tertiary-container": "#2d3d52",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#acedff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container": "#eceef0",
+                        "inverse-primary": "#4cd7f6",
+                        "primary-container": "#06b6d4",
+                        "on-surface-variant": "#3d494c",
+                        "primary-fixed-dim": "#4cd7f6",
+                        "outline": "#6d797d",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-surface": "#191c1e",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "container-max": "1280px",
+                        "margin-desktop": "2.5rem",
+                        "gutter": "1.5rem",
+                        "stack-xs": "0.25rem",
+                        "stack-lg": "2rem",
+                        "margin-mobile": "1rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            background: rgba(247, 249, 251, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .resource-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .resource-card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-outline-variant/30">
+<div class="flex justify-between items-center w-full px-margin-desktop py-unit-sm max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">PartnerIntel AI</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Insights</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Resources</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Ecosystem</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/50">
+<img alt="Partner Executive Profile" data-alt="A professional headshot of a corporate executive in a modern office environment. The lighting is bright and clean, consistent with a professional light-mode UI. The executive has a friendly but confident expression. The background is a slightly blurred architectural interior with soft cyan and gray tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzaQPCIWVgzPphDrt2E978zERjORfzS1Xrc-TtKIeHfFsqV9-T4gkHKfi5dv72Mp_YMYWRit9rdNZoqi0SQsW5PDnBkmOxKXOfcR__Vz_3p97Pqdpbe7cXLlQULvkotXjeuWwKt4QPr5Lqz5-kLfqUwMFt2JNysY1PFf4GG488Ais7lcy-wcJSSzFBnxA196mM0VJzd5suH_foCq6_Glm_KLK1Q50jDlFkz-wpDHQvhLzujnpoPw6SsgYJXGUHaa2eb7KY1lnKBv8"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-16 px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Header -->
+<section class="mb-12">
+<div class="max-w-3xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-4">Resource Library</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Access our comprehensive collection of partner assets, technical documentation, and strategic whitepapers designed to accelerate your AI integration journey.
+                </p>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="mb-10 flex flex-col md:flex-row gap-6 items-center justify-between">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search resources..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md bg-primary-container text-white shadow-sm transition-transform active:scale-95">All Resources</button>
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md bg-white border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors">Whitepapers</button>
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md bg-white border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors">Asset Packs</button>
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md bg-white border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors">Case Studies</button>
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md bg-white border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors">Technical Guides</button>
+</div>
+</section>
+<!-- Featured Resource -->
+<section class="mb-12">
+<div class="relative w-full h-[400px] rounded-2xl overflow-hidden group shadow-sm border border-outline-variant/30">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-tech digital landscape showing glowing data streams and interconnected nodes against a clean, light-colored background. The aesthetic is professional and futuristic, utilizing a palette of bright cyan, soft grays, and whites. The lighting is ethereal and sharp, representing technical clarity and AI-driven precision in a corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBemTICPt9LpE-zemXL5daxmJCRtRP6wMXVKXLmJcZZatAFTvOOl82HKrzaomvRA9_aIlq7SSZD02amFdphvyuix5iUwPIULskiWpVRbJFbU_gkYKB-8CHoTI0BI_oLg25pRh3fNvmbLXkiWnFBT8CNSEWMZOfha3zaiFTkxj9z6ufo2Sksfugqy_xFN2vaZEVW7oOwxGfbLVKRV7K1Gpi1iCh7Y3NjeY0g_6odQjagbf7jcZbFFKrEiO1VDheSOi1pxaRH5_-L2TU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-10 text-white max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-container rounded-full mb-4">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-label-sm text-label-sm">Featured Resource</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-3">2024 Partner Ecosystem Strategy Guide</h2>
+<p class="font-body-md text-body-md text-white/90 mb-6">
+                        Explore the foundational pillars of building a resilient AI-first partnership model. This comprehensive guide covers technical orchestration and market alignment strategies.
+                    </p>
+<button class="flex items-center gap-2 bg-primary-container hover:bg-cyan-500 text-white px-8 py-3 rounded-xl font-label-md text-label-md transition-all active:scale-95 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined">download</span>
+                        Download Guide (12.4 MB)
+                    </button>
+</div>
+</div>
+</section>
+<!-- Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[32px]">picture_as_pdf</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">PDF · 4.2 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">AI Implementation Toolkit</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        A step-by-step technical framework for deploying LLMs within partner infrastructures efficiently.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Oct 24, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-secondary-container/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[32px]">folder_zip</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">ZIP · 128 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Q4 Marketing Asset Pack</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        High-resolution branding, social media templates, and campaign assets for partner co-branding.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Oct 15, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-tertiary-fixed/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[32px]">article</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">DOCX · 1.1 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Service Level Agreement (v2.1)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        Updated compliance and performance standards for premium ecosystem partners.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Oct 02, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[32px]">analytics</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">PDF · 8.5 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Market Insights: AI Trends</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        In-depth analysis of vertical-specific AI adoption rates and growth opportunities for 2025.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Sep 28, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-secondary-container/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[32px]">slideshow</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">PPTX · 18.3 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Partner Pitch Deck 2.0</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        A customizable presentation template for showcasing PartnerIntel AI value to end clients.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Sep 20, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-white border border-outline-variant/50 rounded-xl p-6 resource-card-hover flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-tertiary-fixed/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[32px]">terminal</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">JSON · 2.4 MB</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">API Documentation Bundle</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                        Local developer documentation including Postman collections and integration schema files.
+                    </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-label-sm text-label-sm text-outline">Updated: Sep 12, 2024</span>
+<button class="w-10 h-10 bg-surface-container hover:bg-primary-container hover:text-white text-primary rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Load More & Pagination -->
+<section class="mt-16 flex flex-col items-center gap-8">
+<button class="px-10 py-3 bg-white border border-outline text-on-surface font-label-md text-label-md rounded-xl hover:bg-surface-container transition-all active:scale-95 flex items-center gap-2">
+                Load More Resources
+                <span class="material-symbols-outlined">expand_more</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container text-white font-label-md text-label-md shadow-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container font-label-md text-label-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container font-label-md text-label-md">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container font-label-md text-label-md">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-unit-lg px-margin-desktop bg-surface-container-lowest border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-unit-md mt-16">
+<div class="flex flex-col gap-2">
+<span class="font-headline-md text-primary font-bold">PartnerIntel AI</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Intelligence-as-a-Service. Engineered for Excellence.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security Portal</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">API Documentation</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Partner Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Legal</a>
+</div>
+</footer>
+<!-- SideNav Hidden on Desktop, could be FAB-trigger on mobile -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container/80 backdrop-blur-md border-r border-outline-variant/30 shadow-2xl shadow-black/5 z-40 transform -translate-x-full md:hidden transition-transform duration-300" id="side-nav">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-headline-md text-primary">AI Hub</h4>
+<p class="text-xs text-on-surface-variant">System Active</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="bg-primary-container/10 text-primary border-r-4 border-primary px-4 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label-sm text-label-sm">AI Concierge</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Activity Feed</span>
+</a>
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-label-sm text-label-sm">Partner Assets</span>
+</a>
+</nav>
+</div>
+</aside>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // Filter button active state toggle
+        const filterBtns = document.querySelectorAll('button.font-label-md');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-white');
+                    b.classList.add('bg-white', 'text-on-surface-variant');
+                });
+                btn.classList.remove('bg-white', 'text-on-surface-variant');
+                btn.classList.add('bg-primary-container', 'text-white');
+            });
+        });
+    </script>
+</body></html>

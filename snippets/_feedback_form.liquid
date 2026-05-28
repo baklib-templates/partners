@@ -6,12 +6,12 @@
 
 {% form_tag 'feedback', page: page %}
   <section class="p-4 space-y-5">
-    {% # 标题 %}
+    {% # Title %}
     {% if title %}
       <h1 class="text-2xl font-bold text-center">{{ title }}</h1>
     {% endif %}
 
-    {% # 反馈类型 %}
+    {% # Feedback type %}
     <div
       class="flex flex-wrap gap-3 justify-center items-center"
       x-data="{ selected: '{{ posted_feedback.emoji | default: "" | escape_once }}' }"
@@ -20,7 +20,7 @@
         {% for useful_type in useful_types %}
           <label
             class="inline-flex py-4 cursor-pointer badge badge-soft"
-            :class="selected === '{{ useful_type.emoji |  escape_once }}' ? '!bg-primary-200 !border-primary-200' : ''"
+            :class="selected === '{{ useful_type.emoji |  escape_once }}' ? '!bg-primary/20 !border-primary/40' : ''"
           >
             <input
               type="radio"
@@ -34,7 +34,7 @@
         {% endfor %}
       {% else %}
         {% for useful_type in useful_types %}
-          <button class="inline-flex py-4 badge badge-soft" name="{{ form.feedback_emoji_field_name }}" value="{{ useful_type.emoji |  escape_once }}" :class="{ 'bg-gray-200': selected === '{{ useful_type.emoji | escape_once }}' }">
+          <button class="inline-flex py-4 badge badge-soft" name="{{ form.feedback_emoji_field_name }}" value="{{ useful_type.emoji |  escape_once }}" :class="{ 'bg-base-200': selected === '{{ useful_type.emoji | escape_once }}' }">
             <span class="text-2xl">{{ useful_type.emoji }}</span>
             <span>{{ useful_type.label }}</span>
           </button>
@@ -43,7 +43,7 @@
     </div>
 
     {% if message_enabled %}
-      {%# 反馈内容 %}
+      {%# Feedback message %}
       <fieldset class="fieldset">
         <legend class="fieldset-legend">{{ 'snippets.feedback_form.message_label' | t }}</legend>
         <textarea class="w-full h-24 textarea" name="{{ form.feedback_message_field_name }}" placeholder="{{ 'snippets.feedback_form.message_placeholder' | t }}"></textarea>
@@ -62,7 +62,7 @@
       </fieldset>
     {% endif %}
 
-    {% # 提交按钮 %}
+    {% # Submit actions %}
     <div class="flex justify-center space-x-4">
       <button type="submit" class="btn btn-primary">{{ 'snippets.feedback_form.submit' | t }}</button>
       <button type="button" onclick="this.closest('dialog').close()" class="btn">{{ 'snippets.feedback_form.cancel' | t }}</button>
