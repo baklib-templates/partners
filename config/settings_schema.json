@@ -2,19 +2,20 @@
   {
     "name": "theme_info",
     "theme_name": "partners",
-    "theme_label": "partners",
-    "theme_description": "企业级生态系统与集成枢纽。采用前沿的 Bento Grid 与玻璃拟物风格，完美承载技术集成（Integrations）与渠道代理商（Agencies）的展示与线索分发，助力企业构建坚实的商业生态护城河。",
+    "theme_label": "t:schema.theme_label",
+    "theme_description": "t:schema.theme_description",
     "theme_version": "1.0.0",
     "theme_syntax_version": "v2",
     "theme_scope": "cms",
     "theme_author": "Baklib",
-    "theme_documentation_url": "https://help.baklib.cn/",
-    "theme_support_url": "https://help.baklib.cn/",
+    "theme_documentation_url": "https://www.github.com/baklib/cms-templates/partners",
+    "theme_support_url": "https://www.github.com/baklib/cms-templates/partners",
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
-      "images/theme/release-guide.png",
-      "images/theme/index-card.png",
-      "images/theme/page.png"
+      "images/theme/${lang}/cover.png",
+      "images/theme/${lang}/index_poster.png",
+      "images/theme/${lang}/partner_hub_poster.png",
+      "images/theme/${lang}/page_poster.png"
     ],
     "theme_languages": [
       { "name": "中文简体", "value": "zh-CN" },

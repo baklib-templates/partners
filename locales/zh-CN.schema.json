@@ -1,6 +1,6 @@
 {
   "theme_label": "partners",
-  "theme_description": "企业级生态系统与集成枢纽。采用前沿的 Bento Grid 与玻璃拟物风格，完美承载技术集成（Integrations）与渠道代理商（Agencies）的展示与线索分发，助力企业构建坚实的商业生态护城河。",
+  "theme_description": "企业级生态系统与集成枢纽。完美承载技术集成（Integrations）与渠道代理商（Agencies）的展示与线索分发，助力企业构建坚实的商业生态护城河。",
   "templates": {
     "index": {
       "name": "生态门户首页",

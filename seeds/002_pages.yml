@@ -24,7 +24,7 @@ pages:
             partner_tier: "Gold"
             website_url: "https://example.com"
             action_link: "https://example.com/install"
-            action_label: "Install App"
+            action_label: "Contact Us"
             body: |
               <h2>Integration overview</h2>
               <p>Use OAuth and webhooks to push Baklib site events into NorthBridge pipelines.</p>

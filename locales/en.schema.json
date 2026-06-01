@@ -1,5 +1,5 @@
 {
-  "theme_label": "partners",
+  "theme_label": "Partners",
   "theme_description": "Enterprise ecosystem and integration hub. Bento grid and glassmorphism for integrations and agencies, lead capture, and partner programs.",
   "templates": {
     "index": {
@@ -59,7 +59,7 @@
         },
         "action_link": {
           "label": "Primary CTA link",
-          "info": "Install app, contact partner, etc."
+          "info": "Contact Us, contact partner, etc."
         },
         "action_label": {
           "label": "Primary CTA label",
