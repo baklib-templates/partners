@@ -1,4 +1,28 @@
 {
+  "context_schema": {
+    "label": "Partner",
+    "types": {
+      "partner": {
+        "label": "Partner",
+        "fields": {
+          "topics": {
+            "label": "Industry topics"
+          },
+          "summary": {
+            "label": "Partner summary"
+          },
+          "offerings": {
+            "label": "Capabilities"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Related partners"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Partners",
   "theme_description": "Enterprise ecosystem and integration hub. Bento grid and glassmorphism for integrations and agencies, lead capture, and partner programs.",
   "templates": {

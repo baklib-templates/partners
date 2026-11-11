@@ -1,4 +1,28 @@
 {
+  "context_schema": {
+    "label": "合作夥伴",
+    "types": {
+      "partner": {
+        "label": "合作夥伴",
+        "fields": {
+          "topics": {
+            "label": "產業主題"
+          },
+          "summary": {
+            "label": "夥伴簡介"
+          },
+          "offerings": {
+            "label": "可提供的能力"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "相關夥伴"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Partners",
   "theme_description": "企業級生態與整合樞紐。以 Bento 與玻璃擬物呈現整合與代理商，支援名單與夥伴計畫。",
   "templates": {

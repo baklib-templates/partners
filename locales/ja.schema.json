@@ -1,4 +1,28 @@
 {
+  "context_schema": {
+    "label": "パートナー",
+    "types": {
+      "partner": {
+        "label": "パートナー",
+        "fields": {
+          "topics": {
+            "label": "業界のテーマ"
+          },
+          "summary": {
+            "label": "パートナー紹介"
+          },
+          "offerings": {
+            "label": "提供できること"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "関連パートナー"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Partners",
   "theme_description": "エンタープライズ向けエコシステム・連携ハブ。Bento レイアウトとグラスモーフィズムでインテグレーションと代理店を紹介し、リード獲得とパートナープログラムを支援します。",
   "templates": {

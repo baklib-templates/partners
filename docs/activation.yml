@@ -1,0 +1,16 @@
+apply: site_pages
+page_template: page
+ask_path: -/search
+arrangements:
+  - key: original
+    title: 伙伴页留在原路径
+    description: 按网址或文件夹保持伙伴页的层级。
+    rule: original
+  - key: catalogs
+    title: 顶层目录收成伙伴组
+    description: 每个顶层文件夹成为一组伙伴。
+    rule: top_folder
+  - key: flat
+    title: 伙伴页都放在首页下
+    description: 不再分目录，伙伴详情都挂在首页。
+    rule: flat

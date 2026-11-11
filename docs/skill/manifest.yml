@@ -1,0 +1,89 @@
+skill:
+  version: 2
+  preset: partners
+  writer: site_pages
+  summary: 伙伴分类、机构资料、地区和真实联系方式。
+  home:
+    template: index
+    hero_fields:
+    - description
+    slots: 0
+  navigation: {}
+  site_fields:
+  - slogan
+  - company_name
+  - copyright_info
+  - partner_lead_email
+  - partner_type
+  - partner_region
+  - partner_tier
+  - sort_rule
+  - is_allow_feedback
+  - is_show_visit_count
+  - is_allow_header
+  - is_allow_footer
+  page_types:
+  - template: channel
+    role: channel
+    writable:
+    - intro
+  - template: feedback_error_turbo_stream
+    role: feedback_error_turbo_stream
+    writable: []
+  - template: feedback_success_turbo_stream
+    role: feedback_success_turbo_stream
+    writable: []
+  - template: feedback_turbo_stream
+    role: feedback_turbo_stream
+    writable: []
+  - template: index
+    role: index
+    writable:
+    - description
+  - template: index.list
+    role: index.list
+    writable: []
+  - template: page
+    role: page
+    writable:
+    - title
+    - tagline
+    - logo_image_url
+    - body
+    - partner_type
+    - region
+    - partner_tier
+    - website_url
+    - action_link
+    - action_label
+    - resource_links
+    - contact_email
+    - industries
+  - template: search
+    role: search
+    writable: []
+  - template: tag
+    role: tag
+    writable: []
+  limits:
+    channels: 20
+    pages: 100
+  industries: []
+  content_model:
+    hierarchy:
+    - channel
+    - page
+    body_field: body
+    default_access: public
+    source_of_truth: site_pages
+    boundaries:
+    - 不虚构合作关系或资质
+  customization:
+    mode: organization_candidate
+    protected:
+    - content_model
+    - source_references
+    - permissions
+    - identity
+    - forms
+    - dam_references

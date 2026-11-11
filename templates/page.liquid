@@ -144,6 +144,49 @@
       "images/theme/${lang}/page_poster.png"
     ],
     "sub_page_templates": ["page"],
+    "context_schema": {
+      "key": "partners",
+      "label": "t:schema.context_schema.label",
+      "version": 1,
+      "content_types": [
+        {
+          "key": "partner",
+          "label": "t:schema.context_schema.types.partner.label",
+          "templates": [
+            "page"
+          ],
+          "fields": [
+            {
+              "key": "topics",
+              "label": "t:schema.context_schema.types.partner.fields.topics.label",
+              "type": "tags",
+              "policy": "ai_auto"
+            },
+            {
+              "key": "summary",
+              "label": "t:schema.context_schema.types.partner.fields.summary.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "offerings",
+              "label": "t:schema.context_schema.types.partner.fields.offerings.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            }
+          ],
+          "relations": [
+            {
+              "type": "related_to",
+              "label": "t:schema.context_schema.types.partner.relations.related_to.label",
+              "inverse": "related_to",
+              "cardinality": "many",
+              "policy": "suggest"
+            }
+          ]
+        }
+      ]
+    },
     "settings": [
       {
         "id": "title",

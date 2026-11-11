@@ -1,5 +1,18 @@
 # partners（伙伴门户）主题
 
+[简体中文](README.zh-CN.md) | English
+
+这是伙伴门户（标识 `partners`，范围 cms）。适合集成目录和渠道伙伴展示。不适合政策长文，也不适合知识库。
+
+| 文件 | 读它是为了 |
+| --- | --- |
+| [docs/README.md](docs/README.md) | 分册目录 |
+| [docs/overview.md](docs/overview.md) | 是什么、什么场合用 |
+| [docs/structure.md](docs/structure.md) | 首页、目录壳和伙伴详情 |
+| [docs/schema.md](docs/schema.md) | 字段 id，以及能不能改 |
+| [docs/usage.md](docs/usage.md) | 建站后怎么配 |
+| [docs/activation.yml](docs/activation.yml) | 快速开始的编排配方 |
+
 本仓库是 Baklib CMS 的一个可交付主题项目：用于搭建企业「生态伙伴 / 渠道合作 / 集成市场」门户站点，覆盖**展示（目录 + 详情）**、**线索收集（成为伙伴）**与**运营入口（dashboard）**。
 
 > 与平台相关的能力、字段类型、插件开关等以 Baklib 平台实际表现为准。
